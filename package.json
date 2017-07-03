@@ -1,0 +1,51 @@
+{
+  "name": "hidden-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\"",
+    "server-dev": "babel-node server/app.js",
+    "client-dev": "webpack-dev-server",
+    "build-server": "babel server -d dist/server",
+    "seed": "babel-node ./commands/seed.js"
+  },
+  "author": "tom mendelson",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "concurrently": "^3.4.0",
+    "css-loader": "^0.28.4",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.0",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.28.0",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.4",
+    "material-ui": "^0.18.1",
+    "nodemon": "^1.11.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.5.0",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "express-jwt": "^5.3.0",
+    "mongoose": "^4.9.7",
+    "path": "^0.12.7"
+  }
+}
