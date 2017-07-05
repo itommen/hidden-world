@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Flex } from 'reflexbox';
 
 import Toolbar from './Toolbar';
 import Login from './Login';
@@ -10,15 +11,15 @@ import './App.less';
 class App extends React.Component {    
     render() {
         return (
-            <div style= {{ display: 'flex', flexDirection: 'column' }} >
+            <Flex column id="app">
                 <Toolbar />
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path='/' component={Home} />
-                        <Route path='/login' component={Login} />
+                        <Route exact path='/a' component={Home} />
+                        <Route path='/' component={Login} />
                     </Switch>
                 </BrowserRouter>
-            </div>
+            </Flex>
         );
     }
 }

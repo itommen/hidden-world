@@ -4,14 +4,12 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-
 import { Redirect } from 'react-router';
+import { Flex } from 'reflexbox';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
-
-const flexStyle = { display: 'flex', flex: 'row', justifyContent: 'center' };
 
 export default class LoginForm extends React.Component {
     constructor() {
@@ -32,36 +30,38 @@ export default class LoginForm extends React.Component {
         const loginInProgres = state === 'loginOnProgress';
 
         return (
-            <div style={{ display: 'flex',height: '100vh', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{flex: 0.2}}> </div>
-                <Card style={{ display: 'flex', alignSelf: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                    <CardHeader>
-                        התחבר
+            <Flex justify="center" align="center">
+                <Card>
+                    <Flex column>
+                        <CardHeader>
+                            התחבר
                     </CardHeader>
-                    <CardText style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-                        <TextField
-                            floatingLabelText="שם משתמש"
-                            name="userName"
-                            onChange={this.updateState}
-                            disabled={loginInProgres}
-                        />
+                        <CardText>
+                            <Flex column>
+                                <TextField
+                                    floatingLabelText="שם משתמש"
+                                    name="userName"
+                                    onChange={this.updateState}
+                                    disabled={loginInProgres}
+                                />
 
-                        <TextField
-                            floatingLabelText="סיסמא"
-                            name="password"
-                            onChange={this.updateState}
-                            disabled={loginInProgres}
-                        />
+                                <TextField
+                                    floatingLabelText="סיסמא"
+                                    name="password"
+                                    onChange={this.updateState}
+                                    disabled={loginInProgres}
+                                />
 
-                        <RaisedButton
-                            label={loginInProgres ? <CircularProgress size={20} /> : 'התחבר'}
-                            primary={true}
-                            disabled={loginInProgres}
-                            onClick={this.onLogin} />
-                    </CardText>
+                                <RaisedButton
+                                    label={loginInProgres ? <CircularProgress size={20} /> : 'התחבר'}
+                                    primary={true}
+                                    disabled={loginInProgres}
+                                    onClick={this.onLogin} />
+                            </Flex>
+                        </CardText>
+                    </Flex>
                 </Card>
-                <div style={{flex: 1}}></div>
-            </div>
+            </Flex>
         );
     }
 

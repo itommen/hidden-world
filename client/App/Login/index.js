@@ -11,9 +11,7 @@ const login = () => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-    const { loggedUser } = state;
-    return {
-        state: loggedUser.state
+    return {        
     };
 };
 
