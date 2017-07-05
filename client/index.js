@@ -3,8 +3,10 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import store from './create-store';
+import createStore from './create-store';
 import App from './App';
+
+const store = createStore();
 
 render(
   <Provider store={store}>

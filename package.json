@@ -13,6 +13,7 @@
   "author": "tom mendelson",
   "license": "ISC",
   "devDependencies": {
+    "axios": "^0.16.2",
     "babel-cli": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.4.0",
@@ -35,7 +36,11 @@
     "react-router-dom": "^4.1.1",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
+    "redux-actions": "^2.2.1",
+    "redux-axios-middleware": "^4.0.0",
+    "redux-simple-promise": "^2.0.2",
     "redux-thunk": "^2.2.0",
+    "reflexbox": "^3.0.0-0",
     "style-loader": "^0.18.2",
     "webpack": "^2.5.0",
     "webpack-dev-server": "^2.4.5"
