@@ -30,36 +30,35 @@ export default class LoginForm extends React.Component {
         const loginInProgres = state === 'loginOnProgress';
 
         return (
-            <Flex justify="center" align="center">
+            <Flex column auto justify="center" align="center">
                 <Card>
-                    <Flex column>
-                        <CardHeader>
-                            התחבר
-                    </CardHeader>
-                        <CardText>
-                            <Flex column>
-                                <TextField
-                                    floatingLabelText="שם משתמש"
-                                    name="userName"
-                                    onChange={this.updateState}
-                                    disabled={loginInProgres}
-                                />
+                    <CardTitle title={'התחבר'} />
+                    <CardText>
+                        <Flex column auto>
+                            <TextField
+                                floatingLabelText="שם משתמש"
+                                name="userName"
+                                onChange={this.updateState}
+                                disabled={loginInProgres}
+                            />
 
-                                <TextField
-                                    floatingLabelText="סיסמא"
-                                    name="password"
-                                    onChange={this.updateState}
-                                    disabled={loginInProgres}
-                                />
-
-                                <RaisedButton
-                                    label={loginInProgres ? <CircularProgress size={20} /> : 'התחבר'}
-                                    primary={true}
-                                    disabled={loginInProgres}
-                                    onClick={this.onLogin} />
-                            </Flex>
-                        </CardText>
-                    </Flex>
+                            <TextField
+                                floatingLabelText="סיסמא"
+                                name="password"
+                                onChange={this.updateState}
+                                disabled={loginInProgres}
+                            />
+                        </Flex>
+                    </CardText>
+                    <CardActions>
+                        <Flex column auto align="center">
+                            <RaisedButton
+                                label={loginInProgres ? <CircularProgress size={20} /> : 'התחבר'}
+                                primary={true}
+                                disabled={loginInProgres}
+                                onClick={this.onLogin} />
+                        </Flex>
+                    </CardActions>
                 </Card>
             </Flex>
         );
