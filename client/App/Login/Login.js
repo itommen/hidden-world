@@ -7,10 +7,6 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import { Redirect } from 'react-router';
 import { Flex } from 'reflexbox';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-injectTapEventPlugin();
-
 export default class LoginForm extends React.Component {
     constructor() {
         super();
