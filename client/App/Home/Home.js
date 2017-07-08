@@ -6,8 +6,8 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
 export default class HomeLayout extends React.Component {
-    render() {
-        return (
+  render() {
+    return (
             <div>
                 <Drawer open={true} openSecondary={true}>
                     <MenuItem>Menu Item</MenuItem>
@@ -15,8 +15,8 @@ export default class HomeLayout extends React.Component {
                 </Drawer>
 
                 now you are home ...
-                <Link to="/login">Go to login!</Link>
+                <Link to='/login'>Go to login!</Link>
             </div>
-        );
-    }
+    );
+  }
 }

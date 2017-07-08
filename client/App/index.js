@@ -8,10 +8,10 @@ import Home from './Home';
 
 import './App.less';
 
-class App extends React.Component {    
-    render() {
-        return (
-            <Flex column id="app">
+class App extends React.Component {
+  render() {
+    return (
+            <Flex column id='app'>
                 <Toolbar />
                 <BrowserRouter>
                     <Switch>
@@ -20,8 +20,8 @@ class App extends React.Component {
                     </Switch>
                 </BrowserRouter>
             </Flex>
-        );
-    }
+    );
+  }
 }
 
 export default App;

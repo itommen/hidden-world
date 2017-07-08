@@ -1,43 +1,47 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import CircularProgress from 'material-ui/CircularProgress';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
-import { Redirect } from 'react-router';
 import { Flex } from 'reflexbox';
 import { reduxForm, Field } from 'redux-form';
 
-const LoginForm = props => (
-    <Flex column auto justify="center" align="center">
+// TODO: maybe use it when waiting for login
+// import CircularProgress from 'material-ui/CircularProgress';
+
+const LoginForm = props =>
+    <Flex column auto justify='center' align='center'>
         <form>
             <Card>
                 <CardTitle title={'התחבר'} />
                 <CardText>
                     <Flex column auto>
-                        <Field name={'userName'} component={TextField} floatingLabelText={'שם משתמש'} />
-                        <Field name={'password'} component={TextField} floatingLabelText={'סיסמא'} />
+                        <Field name={'userName'}
+                            component={TextField}
+                            floatingLabelText={'שם משתמש'} />
+                        <Field name={'password'}
+                            component={TextField}
+                            floatingLabelText={'סיסמא'} />
                     </Flex>
                 </CardText>
                 <CardActions>
-                    {/*<Flex column auto align="center">
+                    <Flex column auto align='center'>
                         <RaisedButton
-                        name={'asd'}
+                            name={'asd'}
                             label={'התחבר'}
                             primary={true}
                             onClick={() => {
-                                console.log(props);
-                                debugger;
+                              console.log(props);
+                              debugger;
                             }
                             } />
-                    </Flex>*/}
+                    </Flex>
                 </CardActions>
             </Card>
         </form>
-    </Flex>
-);
+    </Flex>;
 
 export default reduxForm({
-    form: 'loginForm',
+  form: 'loginForm'
 })(LoginForm);
 
 // export default class LoginForm extends React.Component {

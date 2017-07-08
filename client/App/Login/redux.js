@@ -1,42 +1,47 @@
-//import { setUserToken } from '../common/user-token';
-import {reject, resolve} from 'redux-simple-promise';
-import {createAction} from 'redux-actions';
+// import { setUserToken } from '../common/user-token';
+import { reject, resolve } from 'redux-simple-promise';
+import { createAction } from 'redux-actions';
 
 export const LOGIN_ACTION = 'LOGIN';
 
 export default (state = {}, action) => {
-    switch (action.type) {
-        case LOGIN_ACTION: {
-            console.log('login started');
-            return state;
-        }
-
-        case resolve(LOGIN_ACTION): {
-            console.log('login succsed!');
-            return state;
-        }
-
-        case reject(LOGIN_ACTION): {
-            console.log('login failed');
-            return state;
-        }        
-    }
+  switch (action.type) {
+  case LOGIN_ACTION: {
+    console.log('login started');
 
     return state;
+  }
+
+  case resolve(LOGIN_ACTION): {
+    console.log('login succsed!');
+
+    return state;
+  }
+
+  case reject(LOGIN_ACTION): {
+    console.log('login failed');
+
+    return state;
+  }
+
+  default: {
+    return state;
+  }
+  }
 };
 
-export const login = createAction(LOGIN_ACTION, ({userName, password}) => ({
-    request: {
-        url: '/login',
-        method: 'POST',
-        data: {
-            userName,
-            password
-        }
+export const login = createAction(LOGIN_ACTION, ({ userName, password }) => ({
+  request: {
+    url: '/login',
+    method: 'POST',
+    data: {
+      userName,
+      password
     }
+  }
 }));
 
-// export const login = user => dispatch => {  
+// export const login = user => dispatch => {
 //   return fetch('api/users/login', {
 //     method: 'POST',
 //     headers,
@@ -53,4 +58,4 @@ export const login = createAction(LOGIN_ACTION, ({userName, password}) => ({
 //       dispatch(loginSuccsed());
 //     })
 //     .catch(() => dispatch(loginFailed()));
-//};
+// };

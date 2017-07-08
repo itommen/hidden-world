@@ -19,7 +19,7 @@ const axiosConfig = {
     }),
     options: {
       // TODO: check what to do about that ...
-      //...suffixes,
+      // ...suffixes,
       interceptors: {
         request: [
           ({ getState }, config) => {
@@ -48,5 +48,6 @@ export default () => createStore(
   reducer,
   compose(
     applyMiddleware(thunkMiddleware)
+
     // multiClientMiddleware(axiosConfig)
   ));
