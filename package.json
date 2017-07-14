@@ -9,6 +9,7 @@
     "client-dev": "webpack-dev-server",
     "build-server": "babel server -d dist/server",
     "lint-client": "eslint client --fix",
+    "lint-server": "eslint server --fix",
     "seed": "babel-node ./commands/seed.js"
   },
   "author": "tom mendelson",
