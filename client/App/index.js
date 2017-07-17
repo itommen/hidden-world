@@ -15,8 +15,9 @@ class App extends React.Component {
                 <Toolbar />
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path='/a' component={Home} />
-                        <Route path='/' component={Login} />
+                        <Login />
+                        {/* <Route exact path='/a' component={Home} />
+                        <Route path='/' component={Login} /> */}
                     </Switch>
                 </BrowserRouter>
             </Flex>

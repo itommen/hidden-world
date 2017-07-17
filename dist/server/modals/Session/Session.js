@@ -13,6 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var sessionSchema = _mongoose2.default.Schema({
        userId: {
               type: _mongoose2.default.Schema.ObjectId,
+              ref: 'User',
               required: true
        }
 });

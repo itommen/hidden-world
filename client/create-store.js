@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import axios from 'axios';
-import { resolve, reject } from 'redux-simple-promise';
+import promiseMiddleware, { resolve, reject } from 'redux-simple-promise';
 import { multiClientMiddleware } from 'redux-axios-middleware';
 
 import reducer from './reducer';
@@ -46,8 +46,9 @@ const axiosConfig = {
 
 export default () => createStore(
   reducer,
+  {},
   compose(
-    applyMiddleware(thunkMiddleware)
+    applyMiddleware(promiseMiddleware())
 
     // multiClientMiddleware(axiosConfig)
   ));

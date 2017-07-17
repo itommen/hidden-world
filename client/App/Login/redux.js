@@ -6,40 +6,46 @@ export const LOGIN_ACTION = 'LOGIN';
 
 export default (state = {}, action) => {
   switch (action.type) {
-  case LOGIN_ACTION: {
-    console.log('login started');
+    case LOGIN_ACTION: {
+      console.log('login started');
 
-    return state;
-  }
+      return state;
+    }
 
-  case resolve(LOGIN_ACTION): {
-    console.log('login succsed!');
+    case resolve(LOGIN_ACTION): {
+      console.log('login succsed!');
 
-    return state;
-  }
+      return state;
+    }
 
-  case reject(LOGIN_ACTION): {
-    console.log('login failed');
+    case reject(LOGIN_ACTION): {
+      console.log('login failed');
 
-    return state;
-  }
+      return state;
+    }
 
-  default: {
-    return state;
-  }
+    default: {
+      return state;
+    }
   }
 };
 
-export const login = createAction(LOGIN_ACTION, ({ userName, password }) => ({
-  request: {
-    url: '/login',
-    method: 'POST',
-    data: {
-      userName,
-      password
+export const login = createAction(LOGIN_ACTION, ({ userName, password }) => {
+  console.log(userName);
+  console.log(password);
+  debugger;
+  return {
+    request: {
+      url: '/login',
+      method: 'POST',
+      data: {
+        userName,
+        password
+      }
     }
-  }
-}));
+  };
+}
+);
 
 // export const login = user => dispatch => {
 //   return fetch('api/users/login', {
