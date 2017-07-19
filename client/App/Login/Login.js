@@ -5,7 +5,6 @@ import { Flex } from 'reflexbox';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import TextField from '../common/redux-form-inputs/TextField';
-import PasswordField from 'material-ui-password-field';
 
 
 // TODO: maybe use it when waiting for login
@@ -49,10 +48,11 @@ class LoginForm extends React.Component {
   }
 }
 
+LoginForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
+};
+
+
 export default reduxForm({
-  form: 'loginForm',
-  initialValues: {
-    userName: '',
-    password: ''
-  }
+  form: 'loginForm'
 })(LoginForm);
