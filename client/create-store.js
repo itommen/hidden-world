@@ -23,6 +23,7 @@ const axiosConfig = {
       interceptors: {
         request: [
           ({ getState }, config) => {
+            debugger;
             const { auth: { token } } = getState();
 
             if (token) {
@@ -48,7 +49,7 @@ export default () => createStore(
   reducer,
   {},
   compose(
-    applyMiddleware(promiseMiddleware())
-
-    // multiClientMiddleware(axiosConfig)
+    applyMiddleware(
+      promiseMiddleware(),
+      multiClientMiddleware(axiosConfig))
   ));
