@@ -1,38 +1,58 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import { Flex } from 'reflexbox';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
+import TextField from '../common/redux-form-inputs/TextField';
+import PasswordField from 'material-ui-password-field';
+
 
 // TODO: maybe use it when waiting for login
 // import CircularProgress from 'material-ui/CircularProgress';
 
-class LoginForm extends React.Component {  
+class LoginForm extends React.Component {
+  componentDidMount() {
+
+  }
+
   render() {
-    const {handleSubmit} = this.props;
-    
-    return <Flex>
+    const { handleSubmit } = this.props;
+
+    return <Flex column auto justify='center' align='center'>
       <form onSubmit={handleSubmit}>
-        <Field
-          name='test1'
-          component='input'
-          type='text'
-        />
+        <Card>
+          <CardTitle title={'התחבר'} />
+          <CardText>
+            <Flex column auto>
+              <Field name='userName'
+                component={TextField}
+                label='שם משתמש' />
 
-        <Field
-          name='test2'
-          component='input'
-          type='text'
-        />
-
-        <input type='submit' value='submit' />
+                <Field name='password'
+                component={TextField}
+                label='סיסמא' />
+            </Flex>
+          </CardText>
+          <CardActions>
+            <Flex column auto align='center'>
+              <RaisedButton
+                type='submit'
+                name={'login'}
+                label={'התחבר'}
+                primary={true} />
+            </Flex>
+          </CardActions>
+        </Card>
       </form>
     </Flex>;
-  };
+  }
 }
 
 export default reduxForm({
-  form: 'loginForm'
+  form: 'loginForm',
+  initialValues: {
+    userName: '',
+    password: ''
+  }
 })(LoginForm);
