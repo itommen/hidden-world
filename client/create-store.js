@@ -18,12 +18,10 @@ const axiosConfig = {
       responseType: 'json'
     }),
     options: {
-      // TODO: check what to do about that ...
-      // ...suffixes,
+      ...suffixes,
       interceptors: {
         request: [
           ({ getState }, config) => {
-            debugger;
             const { auth: { token } } = getState();
 
             if (token) {

@@ -3,8 +3,8 @@ import { reject, resolve } from 'redux-simple-promise';
 
 export const AUTH_ACTION = 'AUTH';
 
-export default (state = {}, action) => {
-  switch (action.type) {
+export default (state = {}, { type, payload }) => {
+  switch (type) {
     case AUTH_ACTION: {
       console.log('auth started');
 
@@ -13,7 +13,6 @@ export default (state = {}, action) => {
 
     case resolve(AUTH_ACTION): {
       console.log('auth succsed!');
-
       return state;
     }
 

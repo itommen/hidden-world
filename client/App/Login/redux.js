@@ -4,8 +4,8 @@ import { createAction } from 'redux-actions';
 
 export const LOGIN_ACTION = 'LOGIN';
 
-export default (state = {}, action) => {
-  switch (action.type) {
+export default (state = {}, { type, payload, error }) => {
+  switch (type) {
     case LOGIN_ACTION: {
       console.log('login started');
 
@@ -15,11 +15,15 @@ export default (state = {}, action) => {
     case resolve(LOGIN_ACTION): {
       console.log('login succsed!');
 
+      debugger;
+
       return state;
     }
 
     case reject(LOGIN_ACTION): {
+      const { response: { status } } = error;
       console.log('login failed');
+      debugger;
 
       return state;
     }
@@ -30,38 +34,14 @@ export default (state = {}, action) => {
   }
 };
 
-export const login = createAction(LOGIN_ACTION, ({ userName, password }) => {
-  console.log(userName);
-  console.log(password);
-  debugger;
-  return {
-    request: {
-      url: '/login',
-      method: 'POST',
-      data: {
-        userName,
-        password
-      }
+export const login = createAction(LOGIN_ACTION, ({ userName, password }) => ({
+  request: {
+    url: '/auth/login',
+    method: 'POST',
+    data: {
+      userName,
+      password
     }
-  };
-}
+  }
+})
 );
-
-// export const login = user => dispatch => {
-//   return fetch('api/users/login', {
-//     method: 'POST',
-//     headers,
-//     body: JSON.stringify(user)
-//   })
-//     .then((result) => {
-//       if (result.status === 401) {
-//         return Promise.reject();
-//       }
-//       return result.json();
-//     })
-//     .then(token => {
-//       setUserToken(token);
-//       dispatch(loginSuccsed());
-//     })
-//     .catch(() => dispatch(loginFailed()));
-// };
