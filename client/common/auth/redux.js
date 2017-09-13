@@ -1,30 +1,23 @@
-import { reject, resolve } from 'redux-simple-promise';
-// import { createAction } from 'redux-actions';
+import { resolve } from 'redux-simple-promise';
+
+import { LOGIN_ACTION } from '../../App/Login/redux';
+import { setUserToken } from '../../common/auth/user-token';
 
 export const AUTH_ACTION = 'AUTH';
 
 export default (state = {}, { type, payload }) => {
   switch (type) {
-    case AUTH_ACTION: {
-      console.log('auth started');
+    case resolve(LOGIN_ACTION): {
+      const { data: { token, user } } = payload;
 
-      return state;
+      debugger;
+      setUserToken(token);
+      return Object.assign({}, state, {
+        token
+      });
     }
-
-    case resolve(AUTH_ACTION): {
-      console.log('auth succsed!');
-      return state;
-    }
-
-    case reject(AUTH_ACTION): {
-      console.log('auth failed');
-
-      return state;
-    }
-
     default: {
       return state;
     }
   }
-}
-  ;
+};

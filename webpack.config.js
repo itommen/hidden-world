@@ -45,9 +45,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './client/index.html',
-      filename: 'index.html',
-      inject: 'body'
+      template: './client/index.html'
     })
   ],
   resolve: {
@@ -60,9 +58,7 @@ module.exports = {
         secure: false
       }
     },
-    historyApiFallback: {
-      index: 'index.html'
-    }
+    historyApiFallback: true
   },
   devtool: 'source-map',
   watch: true

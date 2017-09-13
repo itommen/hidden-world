@@ -8,8 +8,11 @@ const mapStateToProps = () => {
 };
 
 const mapDispatchToProps = dispath => ({
-  onSubmit: data => {    
-    dispath(loginAction(data));
+  onSubmit: data => {
+    dispath(loginAction(data))
+      .then(x => {
+        debugger;
+      });
   }
 });
 

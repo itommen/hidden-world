@@ -1,28 +1,17 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, Router } from 'react-router';
 import { Flex } from 'reflexbox';
 
 import Toolbar from './Toolbar';
 import Login from './Login';
-import Home from './Home';
+//import Main from './Main';
 
 import './App.less';
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
-    return (
-            <Flex column id='app'>
-                <Toolbar />
-                <BrowserRouter>
-                    <Switch>
-                        <Login />
-                        {/* <Route exact path='/a' component={Home} />
-                        <Route path='/' component={Login} /> */}
-                    </Switch>
-                </BrowserRouter>
-            </Flex>
+    return (      
+        <Route path='/login' component={Login} />      
     );
   }
 }
-
-export default App;

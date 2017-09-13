@@ -1,4 +1,3 @@
-// import { setUserToken } from '../common/user-token';
 import { reject, resolve } from 'redux-simple-promise';
 import { createAction } from 'redux-actions';
 
@@ -8,14 +7,6 @@ export default (state = {}, { type, payload, error }) => {
   switch (type) {
     case LOGIN_ACTION: {
       console.log('login started');
-
-      return state;
-    }
-
-    case resolve(LOGIN_ACTION): {
-      console.log('login succsed!');
-
-      debugger;
 
       return state;
     }
@@ -36,7 +27,7 @@ export default (state = {}, { type, payload, error }) => {
 
 export const login = createAction(LOGIN_ACTION, ({ userName, password }) => ({
   request: {
-    url: '/auth/login',
+    url: '/user/login',
     method: 'POST',
     data: {
       userName,

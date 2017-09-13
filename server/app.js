@@ -4,11 +4,13 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import jwt from 'express-jwt';
+import createError from 'http-errors';
+import { join } from 'path';
 
-import './mongoose.config';
+import './config/mongoose';
 import './modals';
 
-import auth from './controllers/auth';
+import user from './controllers/user';
 
 const app = express();
 
@@ -27,20 +29,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // TODO: maybe move the list of the known urls to another file, check about the auth/token
 // TODO: get the secret word from env var
-app.use(jwt({ secret: 'secret' }).unless({ path: ['/api/auth/login'] }));
+app.use(jwt({ secret: 'secret' }).unless({ path: ['/api/user/login'] }));
 
-app.use('/api/auth', auth);
+app.use('/api/user', user);
 
-app.use((req, res) => {
-  debugger;
-  console.log('1');
-  res.sendFile(path.join(__dirname, '../client/index.html'));
-  console.log('2');
-});
+app.route('/api/*')
+  .get((req, res, next) => {
+    next(createError(404));
+  });
+
+app.route('/*')
+  .get((req, res) => {
+    debugger;
+    res.sendFile(join(__dirname, '..', 'client', 'index.html'));
+  });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   // TODO: check about that. maybe should just return the deafult file.
+  debugger;
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -51,6 +58,7 @@ app.use(function (req, res, next) {
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
+  debugger;
   res.status(err.status || 500);
   res.send({
     message: err.message

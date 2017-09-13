@@ -10,11 +10,7 @@ import TextField from '../common/redux-form-inputs/TextField';
 // TODO: maybe use it when waiting for login
 // import CircularProgress from 'material-ui/CircularProgress';
 
-class LoginForm extends React.Component {
-  componentDidMount() {
-
-  }
-
+class LoginForm extends React.Component {  
   render() {
     const { handleSubmit } = this.props;
 
