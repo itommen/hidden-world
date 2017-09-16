@@ -1,4 +1,5 @@
 import React from 'react';
+import { Flex } from 'reflexbox';
 
 import Toolbar from '../Toolbar';
 
@@ -14,10 +15,12 @@ export default class Layout extends React.Component {
 
   render() {
     return (
-      <div>
+      <Flex id="root" column auto>
         <Toolbar />
-        {this.props.children}
-      </div>
+        <Flex column auto>
+          {this.props.children}
+        </Flex>
+      </Flex>
     );
   }
 } 

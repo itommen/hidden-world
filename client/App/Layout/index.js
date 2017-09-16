@@ -3,6 +3,7 @@ import { push } from 'react-router-redux';
 
 import stateValidator from '../common/state-validator';
 
+import './layout.less';
 import Layout from './Layout';
 
 const mapStateToProps = ({ auth: { isAutorized } }) => ({
