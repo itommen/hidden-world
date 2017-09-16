@@ -1,4 +1,5 @@
 import empty from 'http-reject-empty';
+import { noop } from 'lodash';
 
 import db from '../../config/mongoose';
 import { sign } from '../common/jwt';
@@ -26,9 +27,9 @@ export function login({ body: { userName, password } }) {
     }));
 }
 
-export function auth({ body: { token } }) {
+export function auth({ user: { id } }) {
   const User = db.model('User');
 
-  const a = token;
-  debugger;
+  return User.findById(id)
+    .then(noop);
 }

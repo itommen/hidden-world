@@ -7,12 +7,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import createStore from './common/store/create-store';
+import {store} from './common/store';
 import routes from './App/routes';
 
 injectTapEventPlugin();
 
-const store = createStore(browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(

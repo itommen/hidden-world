@@ -1,14 +1,16 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
-import Toolbar from '../Toolbar';
+import stateValidator from '../common/state-validator';
 
-export default class Layout extends React.Component {
-  render() {
-    return (
-      <div>
-        <Toolbar />
-        {this.props.children}
-      </div>
-    );
-  }
-} 
+import Layout from './Layout';
+
+const mapStateToProps = ({ auth: { isAutorized } }) => ({
+  isAutorized
+});
+
+const mapDispatchToProps = (dispath) => ({
+  stateValidator
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
