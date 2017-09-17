@@ -10,6 +10,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {store} from './common/store';
 import routes from './App/routes';
 
+import '../node_modules/material-design-icons/iconfont/material-icons.css';
+
 injectTapEventPlugin();
 
 const history = syncHistoryWithStore(browserHistory, store);
