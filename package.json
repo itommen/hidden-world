@@ -38,7 +38,7 @@
     "nodemon": "^1.11.0",
     "prop-types": "15.5.7",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",    
+    "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
     "react-router": "3.0.2",
     "react-router-redux": "^4.0.8",
@@ -64,6 +64,7 @@
     "http-errors": "^1.6.2",
     "http-reject-empty": "^1.0.0",
     "jsonwebtoken": "^7.4.3",
+    "lodash": "^4.17.4",
     "mongoose": "^4.9.7",
     "path": "^0.12.7"
   }

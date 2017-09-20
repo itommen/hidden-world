@@ -2,6 +2,7 @@ import React from 'react';
 import { Flex } from 'reflexbox';
 
 import Toolbar from './Toolbar';
+import NavigationBar from './NavigationBar';
 
 export default class Layout extends React.Component {
   componentWillUpdate() {
@@ -19,6 +20,7 @@ export default class Layout extends React.Component {
     return (
       <Flex id="root" column auto>
         <Toolbar isAutorized={isAutorized} />
+        { isAutorized ? <NavigationBar /> : '' }
         <Flex column auto>
           {this.props.children}
         </Flex>

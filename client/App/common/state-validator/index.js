@@ -1,7 +1,7 @@
 import { browserHistory } from 'react-router';
-import { push } from 'react-router-redux';
 
 import { store } from '../../../common/store';
+import redirect from '../navigation';
 
 const nonUserStates = ['/login'];
 const commonStates = [];
@@ -11,14 +11,14 @@ const defaultGuestState = '/login';
 
 export default function () {
   const { pathname } = browserHistory.getCurrentLocation();
-  const { getState, dispatch } = store;
+  const { getState } = store;
   const { auth: { isAutorized } } = getState();
 
   if (isAutorized && nonUserStates.some(x => pathname.startsWith(x))) {
-    dispatch(push(defaultUserState));
+    redirect(defaultUserState);
   }
 
   if (!isAutorized && !nonUserStates.some(x => pathname.startsWith(x))) {
-    dispatch(push(defaultGuestState));
+    redirect(defaultGuestState);
   }
 }
