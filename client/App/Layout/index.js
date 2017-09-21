@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 
 import stateValidator from '../common/state-validator';
 
@@ -10,7 +9,7 @@ const mapStateToProps = ({ auth: { isAutorized } }) => ({
   isAutorized
 });
 
-const mapDispatchToProps = (dispath) => ({
+const mapDispatchToProps = () => ({
   stateValidator
 });
 

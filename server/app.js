@@ -1,6 +1,5 @@
 import express from 'express';
 // import logger from 'morgan';
-import path from 'path';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import jwt from 'express-jwt';
@@ -40,14 +39,12 @@ app.route('/api/*')
 
 app.route('/*')
   .get((req, res) => {
-    debugger;
     res.sendFile(join(__dirname, '..', 'client', 'index.html'));
   });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   // TODO: check about that. maybe should just return the deafult file.
-  debugger;
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -57,7 +54,7 @@ app.use(function (req, res, next) {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function (err, req, res, next) {  
+app.use(function (err, req, res) {
   res.status(err.status || 500);
   res.send({
     message: err.message

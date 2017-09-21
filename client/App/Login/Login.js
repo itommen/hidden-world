@@ -10,7 +10,7 @@ import TextField from '../common/redux-form-inputs/TextField';
 // TODO: maybe use it when waiting for login
 // import CircularProgress from 'material-ui/CircularProgress';
 
-class LoginForm extends React.Component {  
+class LoginForm extends React.Component {
   render() {
     const { handleSubmit } = this.props;
 
@@ -24,7 +24,7 @@ class LoginForm extends React.Component {
                 component={TextField}
                 label='שם משתמש' />
 
-                <Field name='password'
+              <Field name='password'
                 component={TextField}
                 label='סיסמא' />
             </Flex>

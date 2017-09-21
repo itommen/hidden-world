@@ -22,7 +22,7 @@ const internalState = {
 export default (state = internalState, { type, payload }) => {
   switch (type) {
     case resolve(LOGIN_ACTION): {
-      const { data: { token, user } } = payload;
+      const { data: { token } } = payload;
 
       setUserToken(token);
       return Object.assign({}, state, {
@@ -31,23 +31,18 @@ export default (state = internalState, { type, payload }) => {
         token
       });
     }
-    case reject(LOGIN_ACTION): {
-      
-    }
     case AUTH_ACTION: {
       return Object.assign({}, state, {
-        authState: AuthState.started,
-      })
-    }    
+        authState: AuthState.started
+      });
+    }
     case resolve(AUTH_ACTION): {
-      console.log('auth sucssed');
       return Object.assign({}, state, {
         isAutorized: true,
         authState: AuthState.finished
       });
     }
     case reject(AUTH_ACTION): {
-      console.log('auth failed');
       return Object.assign({}, state, {
         isAutorized: false,
         authState: AuthState.finished
@@ -56,9 +51,9 @@ export default (state = internalState, { type, payload }) => {
     case LOGOUT_ACTION: {
       clearUserToken();
       return Object.assign({}, state, {
-        token: undefined,
+        token: null,
         isAutorized: false
-      })
+      });
     }
     default: {
       return state;

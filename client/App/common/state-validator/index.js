@@ -4,7 +4,6 @@ import { store } from '../../../common/store';
 import redirect from '../navigation';
 
 const nonUserStates = ['/login'];
-const commonStates = [];
 
 const defaultUserState = '/';
 const defaultGuestState = '/login';

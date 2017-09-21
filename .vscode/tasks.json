@@ -1,16 +1,28 @@
 {
   "version": "0.1.0",
-  "command": "npm",
   "isShellCommand": true,
-  "args": ["run"],
-  "showOutput": "silent",
   "tasks": [
     {
+      "command": "npm",
+      "args": [
+        "run"
+      ],
       "taskName": "build-server",
       "isBuildCommand": false,
       "isTestCommand": false,
-      "showOutput": "silent",
-      "args": []
+      "showOutput": "silent"
+    },
+    {
+      "command": "sh", // for windows "command": "cmd"  
+      "args": [
+        "-c",
+        "eslint ."
+      ], // for windows "args": ["/C"]
+      "taskName": "eslint",
+      "suppressTaskName": true,
+      "problemMatcher": [
+        "$eslint-stylish"
+      ]
     }
   ]
 }
