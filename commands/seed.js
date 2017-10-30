@@ -1,20 +1,18 @@
-import mongoose from 'mongoose';
+import seeder from 'mongoose-seed';
 
-import users from '../server/modals/User/User.seed';
-import durationTypes from '../server/modals/DurationType/DurationType.seed';
+import usersData from '../server/modals/User/seed';
 
-mongoose.connect('mongodb://localhost/hidden-world');
+// TODO: should get the database from envar
+seeder.connect('mongodb://localhost/hidden-world', function () {
+  seeder.loadModels([
+    './server/modals/User/index.js'
+  ]);
 
-mongoose.Promise = global.Promise;
-
-const db = mongoose.connection;
-db.on('error', (err) => console.log('error! ' + err));
-db.once('open', function () {
-    Promise.all(saveAll(users), saveAll(durationTypes))
-        .then(() => {
-            console.log('seed completed');
-            db.close();
-        });
+  // Clear specified collections
+  seeder.clearModels(['User'], () => {
+    // Callback to populate DB once collections have been cleared
+    seeder.populateModels([usersData], () => {
+      seeder.disconnect();
+    });
+  });
 });
-
-const saveAll = models => models.map(x => x.save());
