@@ -1,2 +1,2 @@
 import './User';
-import './DurationType';
+import './RelevantCountry';

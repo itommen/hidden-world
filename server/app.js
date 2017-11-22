@@ -9,7 +9,9 @@ import { join } from 'path';
 import './config/mongoose';
 import './modals';
 
+// TODO: move all the apis to another file
 import user from './controllers/user';
+import countries from './controllers/country';
 
 const app = express();
 
@@ -31,6 +33,7 @@ app.use(cookieParser());
 app.use(jwt({ secret: 'secret' }).unless({ path: ['/api/user/login'] }));
 
 app.use('/api/user', user);
+app.use('/api/countries', countries);
 
 app.route('/api/*')
   .get((req, res, next) => {

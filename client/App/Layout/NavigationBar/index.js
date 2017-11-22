@@ -16,6 +16,10 @@ const NavigationState = {
   TripPart: {
     index: 1,
     state: '/tripPart'
+  },
+  ManageCountries: {
+    index: 2,
+    state: '/manageCountries'
   }
 };
 
@@ -47,6 +51,11 @@ export default class NavigationBar extends React.Component {
           label='Trip Part'
           icon={<FontIcon className='material-icons'>location_on</FontIcon>}
           onClick={() => this.select(NavigationState.TripPart)}
+        />
+        <BottomNavigationItem
+          label='Manage Countries'
+          icon={<FontIcon className='material-icons'>location_on</FontIcon>}
+          onClick={() => this.select(NavigationState.ManageCountries)}
         />
       </BottomNavigation>
     </Paper>;

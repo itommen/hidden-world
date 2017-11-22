@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoose.Promise = Promise;
+mongoose.Promise = global.Promise;
 
 // TODO: should get connection string from env var
 const db = mongoose.createConnection('mongodb://localhost/hidden-world');
