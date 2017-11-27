@@ -1,12 +1,13 @@
 import React from 'react';
-import { Flex } from 'reflexbox';
+import { Route, IndexRoute } from 'react-router';
 
 import Home from './Home';
 
-export default class Main extends React.Component {
-  render() {
-    return <Flex column>
-      <Home />
-    </Flex>;
-  }
-}
+import TripPartRoutes from './TripPart/routes';
+import ManageCountriesRoutes from './ManageCountries/routes';
+
+export default <Route>
+  <IndexRoute component={Home} />
+  {TripPartRoutes}
+  {ManageCountriesRoutes}
+</Route>;

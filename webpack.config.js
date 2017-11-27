@@ -1,13 +1,16 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: {
-    index: './client/index.js'
-  },
+  entry: [
+    'react-hot-loader/patch',
+    './client/index.js'
+  ],
   output: {
     path: path.join(__dirname, 'dist/client'),
-    filename: '[name].[hash].js'
+    filename: '[name].[hash].js',
+    publicPath: 'http://localhost:8080/'
   },
   module: {
     rules: [
@@ -46,7 +49,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './client/index.html'
-    })
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
     extensions: ['.js', 'jsx', '.less', '.css', '.html']
@@ -58,7 +63,8 @@ module.exports = {
         secure: false
       }
     },
-    historyApiFallback: true
+    historyApiFallback: true,
+    hotOnly: true
   },
   devtool: 'source-map',
   watch: true

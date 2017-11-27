@@ -1,14 +1,15 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
+import { store } from '../common/store';
+import loadUser from '../common/auth/load-user';
+
+import Layout from './Layout';
 import Login from './Login';
 
-import './App.less';
+import MainRoutes from './Main';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Route path='/login' component={Login} />
-    );
-  }
-}
+export default <Route path='/' component={Layout} onEnter={loadUser(store.dispatch)}>
+  <Route path='login' component={Login} />
+  {MainRoutes}
+</Route>;
