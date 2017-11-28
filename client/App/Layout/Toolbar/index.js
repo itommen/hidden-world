@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import AppBar from 'material-ui/AppBar';
 import Logout from './Logout';
 
-class Toolbar extends React.Component {
+export default class Toolbar extends React.Component {
   render() {
     const { isAutorized } = this.props;
 
@@ -15,9 +14,3 @@ class Toolbar extends React.Component {
     />;
   }
 }
-
-Toolbar.propTypes = {
-  isAutorized: PropTypes.bool.isRequired
-};
-
-export default Toolbar;

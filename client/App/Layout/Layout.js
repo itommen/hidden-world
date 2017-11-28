@@ -1,11 +1,10 @@
 import React from 'react';
 import { Flex } from 'reflexbox';
-import PropTypes from 'prop-types';
 
 import Toolbar from './Toolbar';
 import NavigationBar from './NavigationBar';
 
-class Layout extends React.Component {
+export default class Layout extends React.Component {
   componentWillUpdate() {
     const { stateValidator } = this.props;
     stateValidator();
@@ -29,15 +28,3 @@ class Layout extends React.Component {
     );
   }
 }
-
-Layout.propTypes = {
-  stateValidator: PropTypes.func.isRequired,
-  isAutorized: PropTypes.bool.isRequired,
-  children: React.PropTypes.oneOfType([
-    React.PropTypes.arrayOf(React.PropTypes.node),
-    React.PropTypes.node
-  ])
-};
-
-
-export default Layout;

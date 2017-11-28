@@ -3,7 +3,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import { Flex } from 'reflexbox';
 import { reduxForm, Field } from 'redux-form';
-import PropTypes from 'prop-types';
 import TextField from '../common/redux-form-inputs/TextField';
 
 
@@ -43,11 +42,6 @@ class LoginForm extends React.Component {
     </Flex>;
   }
 }
-
-LoginForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
-};
-
 
 export default reduxForm({
   form: 'loginForm'
