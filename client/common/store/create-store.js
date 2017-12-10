@@ -1,9 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import promiseMiddleware, { resolve, reject } from 'redux-simple-promise';
-import { multiClientMiddleware } from 'redux-axios-middleware'
+import { multiClientMiddleware } from 'redux-axios-middleware';
 import { routerMiddleware } from 'react-router-redux';
-import thunkMiddleware from 'redux-thunk';
-import axios from 'axios';;
+import axios from 'axios';
 
 import reducer from './reducer';
 

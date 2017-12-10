@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { resolve, reject } from 'redux-simple-promise';
+import { resolve } from 'redux-simple-promise';
 
 export const LOAD_TRIP_PARTS = 'LOAD_TRIP_PARTS';
 export const INSERT_TRIP_PARTS = 'INSERT_TRIP_PARTS';
@@ -20,7 +20,7 @@ export default (state = internalState, { type, payload: { data } = {} }) => {
 
     case resolve(INSERT_TRIP_PARTS): {
       return { ...state, data: [...state.data, data] };
-    };    
+    }
 
     default: {
       return state;

@@ -10,7 +10,7 @@ export default function () {
   dispatch(loadCountries())
     .then(({ error }) => {
       if (error) {
-        alerter({ message: 'loading countries failed' })
+        alerter({ message: 'loading countries failed' });
       }
     });
 }

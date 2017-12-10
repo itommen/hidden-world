@@ -16,9 +16,8 @@ const mapDispatchToProps = dispath => ({
     dispath(insertTripPart(data))
       .then(({ error }) => {
         if (error) {
-          alerter({ message: 'insertaion failed' })
-        }
-        else {
+          alerter({ message: 'insertaion failed' });
+        } else {
           alerter({ message: 'insertaion succsed' });
           redirect('tripPart');
         }

@@ -61,4 +61,4 @@ export default class LocationSelector extends React.Component {
       </Field>
     </Flex>;
   }
-};
+}

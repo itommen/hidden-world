@@ -9,7 +9,8 @@
     ],
     "parserOptions": {    
         "sourceType": "module",
-        "ecmaFeatures": {                        
+        "ecmaFeatures": {       
+            "experimentalObjectRestSpread": true,                 
             "arrowFunctions": true,
             "binaryLiterals": true,
             "blockBindings": true,

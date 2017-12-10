@@ -28,7 +28,7 @@ export default (state = internalState, { type, payload }) => {
       return { ...state, isAutorized: true, authState: AuthState.finished, token };
     }
     case AUTH_ACTION: {
-      return ({ ...state, authState: AuthState.started });
+      return { ...state, authState: AuthState.started };
     }
     case resolve(AUTH_ACTION): {
       return { ...state, isAutorized: true, authState: AuthState.finished };

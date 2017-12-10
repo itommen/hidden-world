@@ -9,9 +9,15 @@ const internalState = {
   loading: false
 };
 
-const getStateAfterAddCountries = (state, countries) => ({ ...state, relevant: state.relevant.concat(countries) });
+const getStateAfterAddCountries = (state, countries) => ({
+  ...state,
+  relevant: state.relevant.concat(countries)
+});
 
-const getStateAfterRemoveCountries = (state, countries) => ({ ...state, relevant: state.relevant.filter(x => !countries.includes(x)) });
+const getStateAfterRemoveCountries = (state, countries) => ({
+  ...state,
+  relevant: state.relevant.filter(x => !countries.includes(x))
+});
 
 export default (state = internalState, { type, payload, meta }) => {
   switch (type) {
