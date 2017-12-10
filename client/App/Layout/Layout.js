@@ -1,5 +1,9 @@
 import React from 'react';
+
 import { Flex } from 'reflexbox';
+import Snackbar from 'material-ui/Snackbar';
+
+import { clearAlert } from '../common/alerter';
 
 import Toolbar from './Toolbar';
 import NavigationBar from './NavigationBar';
@@ -15,15 +19,21 @@ export default class Layout extends React.Component {
   }
 
   render() {
-    const { isAutorized } = this.props;
+    const { isAutorized, alert: { isOpen, message, autoHideDuration } } = this.props;
 
     return (
       <Flex id='root' column auto>
         <Toolbar isAutorized={isAutorized} />
-        { isAutorized ? <NavigationBar /> : '' }
+        {isAutorized ? <NavigationBar /> : ''}
         <Flex column auto m={12}>
           {this.props.children}
         </Flex>
+        <Snackbar
+          open={isOpen}
+          message={message}
+          autoHideDuration={autoHideDuration}
+          onRequestClose={clearAlert}
+        />
       </Flex>
     );
   }

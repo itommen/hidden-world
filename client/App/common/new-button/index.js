@@ -7,6 +7,7 @@ import redirect from '../../common/navigation';
 export default ({ path }) => <FloatingActionButton
   mini={true}
   style={{
+    zIndex: 1,
     position: 'fixed',
     bottom: '2%',
     left: '2%'

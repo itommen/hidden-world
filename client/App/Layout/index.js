@@ -5,8 +5,9 @@ import stateValidator from '../common/state-validator';
 import './layout.less';
 import Layout from './Layout';
 
-const mapStateToProps = ({ auth: { isAutorized } }) => ({
-  isAutorized
+const mapStateToProps = ({ auth: { isAutorized }, alert }) => ({
+  isAutorized,
+  alert
 });
 
 const mapDispatchToProps = () => ({
