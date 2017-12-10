@@ -2,9 +2,8 @@ import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
 
-// TODO: should get connection string from env var
-const db = mongoose.createConnection('mongodb://localhost/hidden-world');
-
+const connection = `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`;
+const db = mongoose.createConnection(connection);
 db.on('error', () => {
   console.log('mongo failed to load!');
 });

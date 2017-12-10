@@ -3,8 +3,7 @@ import seeder from 'mongoose-seed';
 import usersData from '../server/modals/User/seed';
 import relevantCountriesData from '../server/modals/RelevantCountry/seed';
 
-// TODO: should get the database from envar
-seeder.connect('mongodb://localhost/hidden-world', function () {
+seeder.connect(`mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`, function () {
   seeder.loadModels([
     './server/modals/User/index.js',
     './server/modals/RelevantCountry/index.js'

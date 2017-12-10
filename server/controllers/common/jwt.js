@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-// TODO: should get from env var
-const SECRET = 'secret';
+const SECRET = process.env.SECRET;
 
 export function sign(user) {
   return jwt.sign(user, SECRET);

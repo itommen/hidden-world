@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 // import logger from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -13,8 +14,7 @@ import controllers from './controllers';
 
 const app = express();
 
-// TODO: move to env var!
-const PORT = 2222;
+const PORT = process.env.PORT;
 const asd = app.listen(PORT);
 asd.once('listening', () => {
   console.log(`server listening at ${PORT}`);
@@ -27,8 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // TODO: maybe move the list of the known urls to another file, check about the auth/token
-// TODO: get the secret word from env var
-app.use(jwt({ secret: 'secret' }).unless({ path: ['/api/user/login'] }));
+app.use(jwt({ secret: process.env.SECRET }).unless({ path: ['/api/user/login'] }));
 
 controllers(app);
 
