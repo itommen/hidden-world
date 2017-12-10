@@ -23,10 +23,7 @@ export default class LocationSelector extends React.Component {
   }
 
   countryChanged(ev, selectedCountry) {
-    this.setState(state => Object.assign({}, state, {
-      selectedCountry,
-      isCitySelectionDisabled: false
-    }));
+    this.setState(state => ({ ...state, selectedCountry, isCitySelectionDisabled: false }));
   }
 
   getCities() {

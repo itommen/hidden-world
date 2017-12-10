@@ -16,8 +16,6 @@ injectTapEventPlugin();
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-// TODO: should move all the Object.assign to spread!
-
 const renderApp = () => {
   render(
     <Provider store={store}>

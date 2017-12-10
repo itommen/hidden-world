@@ -11,16 +11,11 @@ const internalState = {
 export default (state = internalState, { type, payload: { data } = {} }) => {
   switch (type) {
     case LOAD_TRIP_PARTS: {
-      return Object.assign({}, state, {
-        loading: true
-      });
+      return { ...state, loading: true };
     }
 
     case resolve(LOAD_TRIP_PARTS): {
-      return Object.assign({}, state, {
-        data,
-        loading: false
-      });
+      return { ...state, data, loading: false };
     }
 
     case resolve(INSERT_TRIP_PARTS): {

@@ -31,15 +31,12 @@ export default class CountriesTableContiner extends React.Component {
       selected.push(selectedCountry);
     }
 
-    this.setState(state => Object.assign({}, state, {
-      selected
-    }));
+
+    this.setState(state => ({ ...state, selected }));
   }
 
   updateFilterText({ target: { value } }) {
-    this.setState(state => Object.assign({}, state, {
-      filter: value
-    }));
+    this.setState(state => ({ ...state, filter: value }));
   }
 
   onMoveClicked() {
@@ -48,9 +45,7 @@ export default class CountriesTableContiner extends React.Component {
 
     onClick(selected);
 
-    this.setState(state => Object.assign({}, state, {
-      selected: []
-    }));
+    this.setState(state => ({ ...state, selected: [] }));
   }
 
   getFilteredCountries() {

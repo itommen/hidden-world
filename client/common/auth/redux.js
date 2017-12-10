@@ -25,35 +25,20 @@ export default (state = internalState, { type, payload }) => {
       const { data: { token } } = payload;
 
       setUserToken(token);
-      return Object.assign({}, state, {
-        isAutorized: true,
-        authState: AuthState.finished,
-        token
-      });
+      return { ...state, isAutorized: true, authState: AuthState.finished, token };
     }
     case AUTH_ACTION: {
-      return Object.assign({}, state, {
-        authState: AuthState.started
-      });
+      return ({ ...state, authState: AuthState.started });
     }
     case resolve(AUTH_ACTION): {
-      return Object.assign({}, state, {
-        isAutorized: true,
-        authState: AuthState.finished
-      });
+      return { ...state, isAutorized: true, authState: AuthState.finished };
     }
     case reject(AUTH_ACTION): {
-      return Object.assign({}, state, {
-        isAutorized: false,
-        authState: AuthState.finished
-      });
+      return { ...state, isAutorized: false, authState: AuthState.finished };
     }
     case LOGOUT_ACTION: {
       clearUserToken();
-      return Object.assign({}, state, {
-        token: null,
-        isAutorized: false
-      });
+      return { ...state, token: null, isAutorized: false };
     }
     default: {
       return state;

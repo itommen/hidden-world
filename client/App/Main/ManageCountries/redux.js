@@ -9,37 +9,25 @@ const internalState = {
   loading: false
 };
 
-const getStateAfterAddCountries = (state, countries) => Object.assign({}, state, {
-  relevant: state.relevant.concat(countries)
-});
+const getStateAfterAddCountries = (state, countries) => ({ ...state, relevant: state.relevant.concat(countries) });
 
-const getStateAfterRemoveCountries = (state, countries) => Object.assign({}, state, {
-  relevant: state.relevant.filter(x => !countries.includes(x))
-});
+const getStateAfterRemoveCountries = (state, countries) => ({ ...state, relevant: state.relevant.filter(x => !countries.includes(x)) });
 
 export default (state = internalState, { type, payload, meta }) => {
   switch (type) {
     case LOAD_COUNTRIES: {
-      return Object.assign({}, state, {
-        loading: true
-      });
+      return { ...state, loading: true };
     }
 
     case resolve(LOAD_COUNTRIES): {
       const { data: { all, relevant } } = payload;
 
-      return Object.assign({}, state, {
-        all,
-        relevant,
-        loading: false
-      });
+      return { ...state, all, relevant, loading: false };
     }
 
     case reject(LOAD_COUNTRIES): {
       // TODO: maybe should alert about the loading problem
-      return Object.assign({}, state, {
-        loading: false
-      });
+      return { ...state, loading: false };
     }
 
     case ADD_COUNTRIES: {
