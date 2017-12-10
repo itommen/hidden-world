@@ -11,11 +11,6 @@ export default class ManageCountries extends React.Component {
     this.removeCountries = this.removeCountries.bind(this);
   }
 
-  componentWillMount() {
-    const { loadCountries } = this.props;
-    loadCountries();
-  }
-
   addCountries(countries) {
     const { addCountries } = this.props;
     addCountries(countries);

@@ -6,5 +6,7 @@ import Insert from './Insert';
 
 export default <Route path='tripPart'>
   <IndexRoute component={Main} />
-  <Route path='/new' component={Insert} />
+  <Route path='new'>
+    <IndexRoute component={Insert} />
+  </Route>
 </Route>;

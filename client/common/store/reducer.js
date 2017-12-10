@@ -6,11 +6,13 @@ import { routerReducer as routing } from 'react-router-redux';
 import login from '../../App/Login/redux';
 import auth from '../auth/redux';
 import countries from '../../App/Main/ManageCountries/redux';
+import tripParts from '../../App/Main/TripPart/redux';
 
 export default combineReducers({
   routing,
   form: formReducer,
   login,
   auth,
-  countries
+  countries,
+  tripParts
 });

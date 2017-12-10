@@ -21,7 +21,7 @@ export default class Layout extends React.Component {
       <Flex id='root' column auto>
         <Toolbar isAutorized={isAutorized} />
         { isAutorized ? <NavigationBar /> : '' }
-        <Flex column auto>
+        <Flex column auto m={12}>
           {this.props.children}
         </Flex>
       </Flex>

@@ -1,7 +1,22 @@
-import React from 'react';
+import { connect } from 'react-redux';
 
-export default class MainTripPart extends React.Component {
-  render() {
-    return <div>insert trip part</div>;
+import Insert from './Insert';
+
+import { insertTripPart } from '../redux';
+
+import redirect from '../../../common/navigation';
+
+const mapStateToProps = ({ countries: { relevant = [] } = {} }) => ({
+  countries: relevant
+});
+
+const mapDispatchToProps = dispath => ({
+  onSubmit: data => {
+    dispath(insertTripPart(data))
+      .then(() => {
+        redirect('tripPart');
+      });
   }
-}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Insert);

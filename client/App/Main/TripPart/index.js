@@ -1,7 +1,16 @@
-import React from 'react';
+import { connect } from 'react-redux';
 
-export default class MainTripPart extends React.Component {
-  render() {
-    return <div>Main trip part</div>;
+import TripPart from './TripPart';
+import { loadTripParts } from './redux';
+
+const mapStateToProps = ({ tripParts: { data } = {} }) => ({
+  tripParts: data
+});
+
+const mapDispatchToProps = dispath => ({
+  loadData: () => {
+    dispath(loadTripParts());
   }
-}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TripPart);

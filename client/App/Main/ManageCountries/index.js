@@ -3,7 +3,7 @@ import { difference } from 'lodash';
 
 import ManageCountries from './ManageCountries';
 
-import { loadCountries, addCountries, removeCountries } from './redux';
+import { addCountries, removeCountries } from './redux';
 
 const mapStateToProps = ({ countries }) => {
   const { all = [], relevant = [], loading } = countries;
@@ -16,8 +16,7 @@ const mapStateToProps = ({ countries }) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    loadCountries: () => dispatch(loadCountries()),
+  return {    
     addCountries: countries => dispatch(addCountries(countries)),
     removeCountries: countries => dispatch(removeCountries(countries))
   };

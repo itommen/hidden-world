@@ -12,6 +12,7 @@ import './modals';
 // TODO: move all the apis to another file
 import user from './controllers/user';
 import countries from './controllers/country';
+import tripPart from './controllers/trip-part';
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(jwt({ secret: 'secret' }).unless({ path: ['/api/user/login'] }));
 
 app.use('/api/user', user);
 app.use('/api/countries', countries);
+app.use('/api/tripPart', tripPart);
 
 app.route('/api/*')
   .get((req, res, next) => {

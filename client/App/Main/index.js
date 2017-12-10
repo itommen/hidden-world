@@ -6,7 +6,9 @@ import Home from './Home';
 import TripPartRoutes from './TripPart/routes';
 import ManageCountriesRoutes from './ManageCountries/routes';
 
-export default <Route>
+import loadInternalData from './load-internal-data';
+
+export default <Route onEnter={loadInternalData}>
   <IndexRoute component={Home} />
   {TripPartRoutes}
   {ManageCountriesRoutes}

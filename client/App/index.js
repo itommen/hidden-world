@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route } from 'react-router';
 
 import { store } from '../common/store';
 import loadUser from '../common/auth/load-user';

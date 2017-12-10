@@ -3,8 +3,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
 import { Flex } from 'reflexbox';
 import { reduxForm, Field } from 'redux-form';
-import TextField from '../common/redux-form-inputs/TextField';
+import { TextField } from 'redux-form-material-ui';
 
+import validate from '~/common/validators/login';
 
 // TODO: maybe use it when waiting for login
 // import CircularProgress from 'material-ui/CircularProgress';
@@ -21,11 +22,11 @@ class LoginForm extends React.Component {
             <Flex column auto>
               <Field name='userName'
                 component={TextField}
-                label='שם משתמש' />
+                floatingLabelText='שם משתמש' />
 
               <Field name='password'
                 component={TextField}
-                label='סיסמא' />
+                floatingLabelText='סיסמא' />
             </Flex>
           </CardText>
           <CardActions>
@@ -44,5 +45,6 @@ class LoginForm extends React.Component {
 }
 
 export default reduxForm({
-  form: 'loginForm'
+  form: 'loginForm',
+  validate
 })(LoginForm);
