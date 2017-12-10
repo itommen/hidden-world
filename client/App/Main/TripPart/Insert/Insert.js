@@ -15,7 +15,9 @@ import validate from '~/common/validators/tripPart';
 
 // TODO: maybe use it when waiting for login
 // import CircularProgress from 'material-ui/CircularProgress';
-const InsertTripPart = ({ handleSubmit, countries, submitting }) => <Flex auto>
+const InsertTripPart = ({ handleSubmit, countries, submitting }) => <Flex auto style={{
+  overflowY: 'auto'
+}}>
   <form onSubmit={handleSubmit} style={{ flex: '1 1 auto' }}>
     <Card>
       <CardTitle title={'יום טיול'} />

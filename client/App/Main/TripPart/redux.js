@@ -19,15 +19,8 @@ export default (state = internalState, { type, payload: { data } = {} }) => {
     }
 
     case resolve(INSERT_TRIP_PARTS): {
-      // TODO: should alert that the insertation succsed
       return { ...state, data: [...state.data, data] };
-    };
-
-
-    case reject(INSERT_TRIP_PARTS): {
-      // TODO: should alert that the insert failed!
-      return state;
-    }
+    };    
 
     default: {
       return state;

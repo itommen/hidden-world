@@ -13,10 +13,8 @@ export default (state = internalState, { type, alert: { message } = {} }) => {
       return { ...state, message, isOpen: true };
     }
 
-    case CLEAR_ALERT: {
-      debugger;
-      const newStat = { ...state, ...internalState };
-      return newStat;
+    case CLEAR_ALERT: {      
+      return { ...state, ...internalState };
     }
 
     default: {

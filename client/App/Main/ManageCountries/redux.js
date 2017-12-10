@@ -26,7 +26,6 @@ export default (state = internalState, { type, payload, meta }) => {
     }
 
     case reject(LOAD_COUNTRIES): {
-      // TODO: maybe should alert about the loading problem
       return { ...state, loading: false };
     }
 
