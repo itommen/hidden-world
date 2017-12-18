@@ -92,6 +92,8 @@ class InsertTripPart extends React.Component {
 
             <Field name='days'
               component={TextField}
+              type='number'
+              InputProps={{ inputProps: { min: 1 } }}
               label='כמה ימים' />
           </CardContent>
           <CardActions>

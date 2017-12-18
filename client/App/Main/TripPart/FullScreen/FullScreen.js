@@ -32,31 +32,26 @@ export default class FullScreen extends React.Component {
 
     const { name, start, end, description, days, flight } = data;
     return <Flex column auto>
-      <Card>
-        <CardHeader>
-          {name}
-        </CardHeader>
-        <CardContent>
-          <div>
-            <Typography>מתחיל ב:</Typography>
-            <Typography type='title' gutterBottom>{this.formatLoaction(start)}</Typography>
-          </div>
 
-          <div>
-            <Typography>נגמר ב: </Typography>
-            <Typography type='title' gutterBottom>{this.formatLoaction(end)}</Typography>
-          </div>
-          <div>
-            <Typography>משך: </Typography>
-            <Typography type='title' gutterBottom>{days} ימים</Typography>
-          </div>
-          <FlightIndicator flights={flight} />
-          <div>
-            <Typography type='display3'>תיאור היום</Typography>
-            <Typography>{description}</Typography>
-          </div>
-        </CardContent>
-      </Card>
+      <Typography type='display4' gutterBottom>{name}</Typography>
+      <div>
+        <Typography>מתחיל ב:</Typography>
+        <Typography type='title' gutterBottom>{this.formatLoaction(start)}</Typography>
+      </div>
+
+      <div>
+        <Typography>נגמר ב: </Typography>
+        <Typography type='title' gutterBottom>{this.formatLoaction(end)}</Typography>
+      </div>
+      <div>
+        <Typography>משך: </Typography>
+        <Typography type='title' gutterBottom>{days} ימים</Typography>
+      </div>
+      <FlightIndicator flights={flight} />
+      <div>
+        <Typography type='display3'>תיאור היום</Typography>
+        <Typography>{description}</Typography>
+      </div>
     </Flex>;
   }
 }
