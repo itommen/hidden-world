@@ -3,7 +3,30 @@ import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import purple from 'material-ui/colors/purple';
+import green from 'material-ui/colors/green';
+
+import jss from 'jss';
+import rtl from 'jss-rtl';
+
+jss.use(rtl());
+
+const theme = createMuiTheme({
+  palette: {
+    primary: purple,
+    secondary: green
+  },
+  direction: 'rtl',
+  typography: {
+    fontFamily:
+      '-apple-system,system-ui,BlinkMacSystemFont,' +
+      '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+    button: {
+      fontStyle: 'italic'
+    }
+  }
+});
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -11,6 +34,7 @@ import { store } from './common/store';
 import App from './App';
 
 import '../node_modules/material-design-icons/iconfont/material-icons.css';
+import 'typeface-roboto';
 
 injectTapEventPlugin();
 
@@ -19,7 +43,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 const renderApp = () => {
   render(
     <Provider store={store}>
-      <MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
         <Router history={history}>
           {App}
         </Router>

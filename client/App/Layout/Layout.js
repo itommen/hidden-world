@@ -24,8 +24,10 @@ export default class Layout extends React.Component {
     return (
       <Flex id='root' column auto>
         <Toolbar isAutorized={isAutorized} />
-        {isAutorized ? <NavigationBar /> : ''}
-        <Flex column auto m={12}>
+        {isAutorized ? <NavigationBar /> : null}
+        <Flex column auto m={8} style={{
+          overflowY: 'auto'
+        }}>
           {this.props.children}
         </Flex>
         <Snackbar

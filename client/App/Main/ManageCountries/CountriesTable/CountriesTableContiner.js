@@ -1,9 +1,11 @@
 import React from 'react';
 import { Flex } from 'reflexbox';
-import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import CircularProgress from 'material-ui/CircularProgress';
+
+import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card';
+import Button from 'material-ui/Button';
+import { CircularProgress } from 'material-ui/Progress';
 import TextField from 'material-ui/TextField';
+
 import { toLower, pull } from 'lodash';
 
 import ContriesTable from './CountriesTable';
@@ -66,13 +68,11 @@ export default class CountriesTableContiner extends React.Component {
     }
 
     return <Flex column auto>
-      <Flex auto>
-        <TextField value={this.state.filter}
-          hintText='filter countries'
-          onChange={evt => this.updateFilterText(evt)}
-          id='filter'
-          style={{ flex: 1 }} />
-      </Flex>
+      <TextField value={this.state.filter}
+        label='filter countries'
+        onChange={evt => this.updateFilterText(evt)}
+        id='filter'
+        fullWidth={true} />
       <ContriesTable onSelect={this.handleRowSelection}
         selected={selected}
         countries={this.getFilteredCountries()} />
@@ -83,21 +83,20 @@ export default class CountriesTableContiner extends React.Component {
     const { title, moveTo, loading } = this.props;
 
     return <Card style={{ flex: '1 1 auto' }} id='card'>
-      <CardTitle title={title} />
-      <Flex auto justify='center'>
-        <CardText style={{ height: '50%', overflowY: 'auto' }}>
-          {this.getCardBody()}
-        </CardText>
-      </Flex>
+      <CardHeader title={title} />
+      <CardContent style={{ height: '50%', overflowY: 'auto' }}>
+        {this.getCardBody()}
+      </CardContent>
       <CardActions>
         {
           loading
-            ? <span />
-            : <RaisedButton
+            ? null
+            : <Button
+              raised
               name={'move'}
-              label={`Move to '${moveTo}'`}
-              primary={true}
-              onClick={this.onMoveClicked} />
+              onClick={this.onMoveClicked}>
+              {`Move to '${moveTo}'`}
+            </Button>
         }
       </CardActions>
     </Card>;

@@ -1,10 +1,11 @@
 import React from 'react';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+
+import Button from 'material-ui/Button';
+import AddIcon from 'material-ui-icons/Add';
 
 import redirect from '../../common/navigation';
 
-export default ({ path }) => <FloatingActionButton
+export default ({ path }) => <Button fab color='primary'
   mini={true}
   style={{
     zIndex: 1,
@@ -13,5 +14,5 @@ export default ({ path }) => <FloatingActionButton
     left: '2%'
   }}
   onClick={() => redirect(path)} >
-  <ContentAdd />
-</FloatingActionButton>;
+  <AddIcon />
+</Button>;

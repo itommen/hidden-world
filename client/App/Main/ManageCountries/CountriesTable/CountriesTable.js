@@ -1,12 +1,8 @@
 import React from 'react';
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn
-} from 'material-ui/Table';
+
+import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+import Checkbox from 'material-ui/Checkbox';
+
 import { Flex } from 'reflexbox';
 
 export default class CountriesTable extends React.Component {
@@ -21,29 +17,31 @@ export default class CountriesTable extends React.Component {
     return this.props.selected.includes(index);
   }
 
-  onCellClicked(row) {
-    const { countries, onSelect } = this.props;
-    onSelect(countries[row]);
+  onCellClicked(country) {
+    const { onSelect } = this.props;
+    return () => onSelect(country);
   }
 
   render() {
     const { countries } = this.props;
 
     // The 'style' attribute is here until the bug fixed in angular material suporting rtl in tables
-    return <Flex column auto>
-
-      <Table style={{ direction: 'ltr' }}
-        multiSelectable={true}
-        onCellClick={this.onCellClicked}>
-        <TableHeader>
+    return <Flex auto>
+      <Table style={{ direction: 'ltr' }}>
+        <TableHead>
           <TableRow>
-            <TableHeaderColumn>Name</TableHeaderColumn>
+            <TableCell padding='none' style={{ width: '10%' }}/>
+            <TableCell>Name</TableCell>
           </TableRow>
-        </TableHeader>
-        <TableBody deselectOnClickaway={false}>
+        </TableHead>
+        <TableBody>
           {
-            countries.map(x => <TableRow key={x} selected={this.isSelected(x)}>
-              <TableRowColumn>{x}</TableRowColumn>
+            countries.map(x => <TableRow key={x}>
+              <TableCell padding='none'>
+                <Checkbox
+                  onChange={this.onCellClicked(x)} />
+              </TableCell>
+              <TableCell>{x}</TableCell>
             </TableRow>)
           }
         </TableBody>

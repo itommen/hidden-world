@@ -1,15 +1,17 @@
 import React from 'react';
 
-import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
+import Button from 'material-ui/Button';
+import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 
 export default class Logout extends React.Component {
   render() {
     const { logout } = this.props;
 
-    return <RaisedButton
-      label='התנתק'
-      icon={<FontIcon className='material-icons'>chevron_right</FontIcon>}
-      onClick={() => logout()} />;
+    return <Button
+      raised
+      onClick={() => logout()}>
+      <ChevronRightIcon />
+      התנתק
+    </Button>;
   }
 }

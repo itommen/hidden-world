@@ -1,6 +1,6 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card';
+import Button from 'material-ui/Button';
+import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card';
 import { Flex } from 'reflexbox';
 import { reduxForm, Field } from 'redux-form';
 import { TextField } from 'redux-form-material-ui';
@@ -17,25 +17,27 @@ class LoginForm extends React.Component {
     return <Flex column auto justify='center' align='center'>
       <form onSubmit={handleSubmit}>
         <Card>
-          <CardTitle title={'התחבר'} />
-          <CardText>
+          <CardHeader title={'התחבר'} />
+          <CardContent>
             <Flex column auto>
               <Field name='userName'
                 component={TextField}
-                floatingLabelText='שם משתמש' />
+                label='שם משתמש' />
 
               <Field name='password'
                 component={TextField}
-                floatingLabelText='סיסמא' />
+                label='סיסמא' />
             </Flex>
-          </CardText>
+          </CardContent>
           <CardActions>
             <Flex column auto align='center'>
-              <RaisedButton
+              <Button
+                raised
                 type='submit'
-                name={'login'}
-                label={'התחבר'}
-                primary={true} />
+                name='login'
+                color='primary'>
+                התחבר
+              </Button>
             </Flex>
           </CardActions>
         </Card>

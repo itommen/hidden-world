@@ -1,61 +1,52 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import FontIcon from 'material-ui/FontIcon';
-import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
-import { browserHistory } from 'react-router';
-import { values } from 'lodash';
+
+import HomeIcon from 'material-ui-icons/Home';
+import LocationOnIcon from 'material-ui-icons/LocationOn';
+
+import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
 
 import redirect from '../../common/navigation';
 
-const NavigationState = {
-  Home: {
-    index: 0,
-    state: '/',
-    isDefault: true
-  },
-  TripPart: {
-    index: 1,
-    state: '/tripPart'
-  },
-  ManageCountries: {
-    index: 2,
-    state: '/manageCountries'
-  }
-};
+const NavigationState = ['', 'tripPart', 'manageCountries'];
 
 export default class NavigationBar extends React.Component {
-  componentWillMount() {
-    const { pathname } = browserHistory.getCurrentLocation();
+  constructor() {
+    super();
 
-    const currentState = values(NavigationState)
-      .find(({ state, isDefault }) => pathname.startsWith(state) && !isDefault)
-      || NavigationState.Home;
+    this.state = {
+      selected: 0
+    };
 
-    this.select(currentState);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  select({ index, state }) {
-    this.setState({ selectedIndex: index });
-    redirect(state);
+  handleChange(event, value) {
+    this.setState({
+      selected: value
+    });
+    redirect(`/${NavigationState[value]}`);
   }
 
   render() {
-    return <Paper zDepth={1}>
-      <BottomNavigation selectedIndex={this.state.selectedIndex}>
-        <BottomNavigationItem
+    const { selected } = this.state;
+
+    return <Paper elevation={20}>
+      <BottomNavigation
+        value={selected}
+        onChange={this.handleChange}
+        showLabels>
+        <BottomNavigationButton
           label='Home'
-          icon={<FontIcon className='material-icons'>home</FontIcon>}
-          onClick={() => this.select(NavigationState.Home)}
+          icon={<HomeIcon />}
         />
-        <BottomNavigationItem
+        <BottomNavigationButton
           label='Trip Part'
-          icon={<FontIcon className='material-icons'>location_on</FontIcon>}
-          onClick={() => this.select(NavigationState.TripPart)}
+          icon={<LocationOnIcon />}
         />
-        <BottomNavigationItem
+        <BottomNavigationButton
           label='Manage Countries'
-          icon={<FontIcon className='material-icons'>location_on</FontIcon>}
-          onClick={() => this.select(NavigationState.ManageCountries)}
+          icon={<LocationOnIcon />}
         />
       </BottomNavigation>
     </Paper>;

@@ -1,17 +1,20 @@
 import empty from 'http-reject-empty';
-import { noop, isEmpty } from 'lodash';
+
+import { noop } from 'lodash';
 
 import db from '../../config/mongoose';
 
+import validate from '../common/validate';
 import validation from '~/common/validators/tripPart';
 
 const TripPart = db.model('TripPart');
 
-const conertToMinimizeTripPart = ({ id, name, days, start, end }) => ({
+const conertToMinimizeTripPart = ({ id, name, days, start, end, flight }) => ({
   id,
   name,
   start,
   end,
+  flight,
   days
 });
 
@@ -20,12 +23,19 @@ export function getAll() {
     .then(x => x.map(conertToMinimizeTripPart));
 }
 
-export function insert({ body }) {
-  const validationErrors = validation(body);
-  if (!isEmpty(validationErrors)) {
-    return Promise.reject(validationErrors);
-  }
+export function fetch({ params: { id } }) {
+  return TripPart.findById(id)
+    .then(empty);
+}
 
-  return new TripPart(body).save()
+export function insert({ body }) {
+  return validate(body, validation)
+    .then(() => new TripPart(body).save())
     .then(conertToMinimizeTripPart);
+}
+
+export function update({ body }) {
+  return validate(body, validation)
+    .then(() => TripPart.update({ _id: body.id }, { $set: body }))
+    .then(noop);
 }

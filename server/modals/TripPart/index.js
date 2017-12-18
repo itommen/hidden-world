@@ -18,6 +18,10 @@ const TripPart = mongoose.Schema({
   },
   start: LocationSchema,
   end: LocationSchema,
+  flight: {
+    type: [Number],
+    required: true
+  },
   description: {
     type: String,
     required: true
