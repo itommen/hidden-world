@@ -34,7 +34,7 @@ export default class Layout extends React.Component {
           open={isOpen}
           message={message}
           autoHideDuration={autoHideDuration}
-          onRequestClose={clearAlert}
+          onClose={clearAlert}
         />
       </Flex>
     );

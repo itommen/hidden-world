@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
     return <Flex column auto justify='center' align='center'>
       <form onSubmit={handleSubmit}>
         <Card>
-          <CardHeader title={'התחבר'} />
+          <CardHeader title={'התחבר'} subheader='' />
           <CardContent>
             <Flex column auto>
               <Field name='userName'

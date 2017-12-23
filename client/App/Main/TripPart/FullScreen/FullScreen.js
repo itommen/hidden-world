@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { CircularProgress } from 'material-ui/Progress';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 
 import { Flex } from 'reflexbox';

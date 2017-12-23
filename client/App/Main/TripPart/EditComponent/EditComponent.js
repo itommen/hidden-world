@@ -52,7 +52,7 @@ class InsertTripPart extends React.Component {
     return <Flex auto>
       <form onSubmit={handleSubmit} style={{ flex: '1 1 auto' }}>
         <Card>
-          <CardHeader title={'יום טיול'} />
+          <CardHeader title={'יום טיול'} subheader='' />
           <CardContent>
             <FormControl>
               <Field name='name'

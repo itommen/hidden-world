@@ -83,7 +83,7 @@ export default class CountriesTableContiner extends React.Component {
     const { title, moveTo, loading } = this.props;
 
     return <Card style={{ flex: '1 1 auto' }} id='card'>
-      <CardHeader title={title} />
+      <CardHeader title={title} subheader='' />
       <CardContent style={{ height: '50%', overflowY: 'auto' }}>
         {this.getCardBody()}
       </CardContent>

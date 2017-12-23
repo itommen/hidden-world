@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import seeder from 'mongoose-seed';
 
 import usersData from '../server/modals/User/seed';
