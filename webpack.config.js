@@ -1,6 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const webpack = require('webpack');
+
+const publicPath = 'http://localhost:8080/';
 
 module.exports = {
   entry: [
@@ -10,7 +13,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist/client'),
     filename: '[name].[hash].js',
-    publicPath: 'http://localhost:8080/'
+    publicPath
   },
   module: {
     rules: [
@@ -51,7 +54,8 @@ module.exports = {
       template: './client/index.html'
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new OpenBrowserPlugin({ url: publicPath })
   ],
   resolve: {
     extensions: ['.js', 'jsx', '.less', '.css', '.html']
