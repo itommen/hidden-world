@@ -2,9 +2,7 @@ import React from 'react';
 
 import Button from 'material-ui/Button';
 import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card';
-import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
-import { InputLabel } from 'material-ui/Input';
 import Typography from 'material-ui/Typography';
 
 import ImageUploader from './ImageUploader';
@@ -12,13 +10,15 @@ import ImageUploader from './ImageUploader';
 import { Flex } from 'reflexbox';
 import { reduxForm, Field, FormSection } from 'redux-form';
 
-import { TextField, Select } from 'redux-form-material-ui';
+import { TextField } from 'redux-form-material-ui';
 
 import LocationSelector from './LocationSelector';
 
 import validate from '~/common/validators/tripPart';
 
 import { domestic, foreign } from '../flight-type.const';
+
+import CheckboxGroup from '../../../common/CheckboxGroup';
 
 // TODO: maybe use it when waiting for login
 // import CircularProgress from 'material-ui/CircularProgress';
@@ -67,16 +67,12 @@ class InsertTripPart extends React.Component {
               </Flex>
             </FormSection>
 
-            <FormControl>
-              <InputLabel>טיסה</InputLabel>
-              <Field name='flight'
-                multiple={true}
-                component={Select}>
-                <MenuItem value={null} />
-                <MenuItem key={domestic} value={domestic}>פנים</MenuItem>
-                <MenuItem key={foreign} value={foreign}>חוץ</MenuItem>
-              </Field>
-            </FormControl>
+            <Field name='flight'
+              component={CheckboxGroup}
+              items={[{ key: domestic, label: 'פנים' }, { key: foreign, label: 'חוץ' }]}
+              formLabel='טיסות'
+            />
+
             <Field name='description'
               component={TextField}
               label='תיאור'

@@ -28,16 +28,12 @@ const theme = createMuiTheme({
   }
 });
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
 import { store } from './common/store';
 import App from './App';
 
 import '../node_modules/material-design-icons/iconfont/material-icons.css';
 import '../node_modules/react-image-gallery/styles/css/image-gallery.css';
 import 'typeface-roboto';
-
-injectTapEventPlugin();
 
 const history = syncHistoryWithStore(browserHistory, store);
 

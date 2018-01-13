@@ -11,7 +11,6 @@ const LocationSchema = mongoose.Schema({
   }
 });
 
-// TODO: Yet have to save wich image belong
 const TripPart = mongoose.Schema({
   name: {
     type: String,
@@ -21,7 +20,7 @@ const TripPart = mongoose.Schema({
   end: LocationSchema,
   flight: {
     type: [Number],
-    required: true
+    required: false
   },
   description: {
     type: String,
