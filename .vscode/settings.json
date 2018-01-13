@@ -1,7 +1,7 @@
 {
     "editor.useTabStops": true,
     "eslint.options": {
-        "configFile": "C:\\Users\\USER\\Desktop\\repositories\\hidden-world\\.eslintrc.json"
+        "configFile": "C:\\Users\\iTomM\\Desktop\\repositories\\hidden-world\\.eslintrc.json"
     },
     "eslint.workingDirectories": [
         "./client",

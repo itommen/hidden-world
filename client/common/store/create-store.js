@@ -4,6 +4,8 @@ import { multiClientMiddleware } from 'redux-axios-middleware';
 import { routerMiddleware } from 'react-router-redux';
 import axios from 'axios';
 
+import { serialize } from '../../../common/multipart-form';
+
 import reducer from './reducer';
 
 const suffixes = {
@@ -11,26 +13,44 @@ const suffixes = {
   errorSuffix: reject('')
 };
 
+const defaultClient = axios.create({
+  baseURL: '/api',
+  responseType: 'json'
+});
+
+const defaultRequestIntercpetors = [
+  ({ getState }, config) => {
+    const { auth: { token } } = getState();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  }
+];
+
+const defaultOptions = {
+  ...suffixes,
+  interceptors: {
+    request: defaultRequestIntercpetors
+  }
+};
+
 const axiosConfig = {
   default: {
-    client: axios.create({
-      baseURL: '/api',
-      responseType: 'json'
-    }),
+    client: defaultClient,
+    options: defaultOptions
+  },
+  withFiles: {
+    client: defaultClient,
     options: {
-      ...suffixes,
+      ...defaultOptions,
       interceptors: {
-        request: [
-          ({ getState }, config) => {
-            const { auth: { token } } = getState();
-
-            if (token) {
-              config.headers.Authorization = `Bearer ${token}`;
-            }
-
-            return config;
-          }
-        ]
+        request: [...defaultRequestIntercpetors, (state, config) => {
+          config.data = serialize(config.data);
+          config.headers['content-type'] =
+            'multipart/form-data; boundary=WebKitFormBoundaryCIkXuNWC8OhEuT3S';
+          return config;
+        }]
       }
     }
   },

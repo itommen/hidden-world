@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper';
 import HomeIcon from 'material-ui-icons/Home';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 
-import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
+import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
 
 import redirect from '../../common/navigation';
 
@@ -36,15 +36,15 @@ export default class NavigationBar extends React.Component {
         value={selected}
         onChange={this.handleChange}
         showLabels>
-        <BottomNavigationButton
+        <BottomNavigationAction
           label='Home'
           icon={<HomeIcon />}
         />
-        <BottomNavigationButton
+        <BottomNavigationAction
           label='Trip Part'
           icon={<LocationOnIcon />}
         />
-        <BottomNavigationButton
+        <BottomNavigationAction
           label='Manage Countries'
           icon={<LocationOnIcon />}
         />

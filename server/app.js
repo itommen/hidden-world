@@ -2,10 +2,11 @@ import 'dotenv/config';
 import express from 'express';
 // import logger from 'morgan';
 import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
 import jwt from 'express-jwt';
 import createError from 'http-errors';
 import { join } from 'path';
+
+import bodyParseConfig from './config/body-parser';
 
 import './config/mongoose';
 import './modals';
@@ -20,13 +21,15 @@ asd.once('listening', () => {
   console.log(`server listening at ${PORT}`);
 });
 
+app.use(express.static(join(__dirname, 'uploads')));
+
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+bodyParseConfig(app);
 app.use(cookieParser());
 // TODO: maybe move the list of the known urls to another file, check about the auth/token
+
 app.use(jwt({ secret: process.env.SECRET }).unless({ path: ['/api/user/login'] }));
 
 controllers(app);

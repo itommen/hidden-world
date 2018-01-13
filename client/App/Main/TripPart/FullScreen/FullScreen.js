@@ -5,6 +5,8 @@ import Typography from 'material-ui/Typography';
 
 import { Flex } from 'reflexbox';
 
+import ImageGallery from 'react-image-gallery';
+
 import FlightIndicator from '../FlightIndicator';
 
 export default class FullScreen extends React.Component {
@@ -29,7 +31,7 @@ export default class FullScreen extends React.Component {
       return <CircularProgress />;
     }
 
-    const { name, start, end, description, days, flight } = data;
+    const { name, start, end, description, days, flight, savedImages = [] } = data;
     return <Flex column auto>
 
       <Typography type='display4' gutterBottom>{name}</Typography>
@@ -50,6 +52,16 @@ export default class FullScreen extends React.Component {
       <div>
         <Typography type='display3'>תיאור היום</Typography>
         <Typography>{description}</Typography>
+      </div>
+      <div>
+        <Typography type='display3'>גלריה</Typography>
+        <ImageGallery
+          items={savedImages.map(x => ({
+            original: `/uploads/${x}`,
+            thumbnail: `/uploads/${x}`
+          }))}
+          showPlayButton={false}
+          showIndex={true} />
       </div>
     </Flex>;
   }

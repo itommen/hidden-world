@@ -57,7 +57,8 @@ export const insertTripPart = createAction(INSERT_TRIP_PARTS, data => ({
     url: '/tripPart',
     method: 'POST',
     data
-  }
+  },
+  client: 'withFiles'
 })
 );
 
@@ -66,6 +67,7 @@ export const editTripPart = createAction(EDIT_TRIP_PARTS, data => ({
     url: '/tripPart',
     method: 'PUT',
     data
-  }
+  },
+  client: 'withFiles'
 })
 );

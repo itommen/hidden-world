@@ -7,6 +7,8 @@ import { FormControl } from 'material-ui/Form';
 import { InputLabel } from 'material-ui/Input';
 import Typography from 'material-ui/Typography';
 
+import ImageUploader from './ImageUploader';
+
 import { Flex } from 'reflexbox';
 import { reduxForm, Field, FormSection } from 'redux-form';
 
@@ -18,7 +20,6 @@ import validate from '~/common/validators/tripPart';
 
 import { domestic, foreign } from '../flight-type.const';
 
-
 // TODO: maybe use it when waiting for login
 // import CircularProgress from 'material-ui/CircularProgress';
 class InsertTripPart extends React.Component {
@@ -26,9 +27,9 @@ class InsertTripPart extends React.Component {
     super();
 
     this.state = {
-      name: ''
+      name: '',
+      pictures: {}
     };
-    this.handleChange = this.handleChange.bind();
   }
   componentWillMount() {
     const { data, initialize } = this.props;
@@ -38,16 +39,9 @@ class InsertTripPart extends React.Component {
     }
   }
 
-  handleChange(name) {
-    return event => {
-      this.setState({
-        [name]: event.target.value
-      });
-    };
-  }
-
   render() {
     const { handleSubmit, countries, submitting, data = {} } = this.props;
+    const images = data.savedImages || [];
 
     return <Flex auto>
       <form onSubmit={handleSubmit} style={{ flex: '1 1 auto' }}>
@@ -95,6 +89,12 @@ class InsertTripPart extends React.Component {
               type='number'
               InputProps={{ inputProps: { min: 1 } }}
               label='כמה ימים' />
+
+            <Field name='images'
+              component={ImageUploader}
+              images={images}
+            />
+
           </CardContent>
           <CardActions>
             <Button
