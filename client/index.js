@@ -10,6 +10,8 @@ import green from 'material-ui/colors/green';
 import jss from 'jss';
 import rtl from 'jss-rtl';
 
+import { hot } from 'react-hot-loader';
+
 jss.use(rtl());
 
 const theme = createMuiTheme({
@@ -37,26 +39,14 @@ import 'typeface-roboto';
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-const renderApp = () => {
-  render(
-    <Provider store={store}>
-      <MuiThemeProvider theme={theme}>
-        <Router history={history}>
-          {App}
-        </Router>
-      </MuiThemeProvider>
-    </Provider >,
-    document.getElementById('root')
-  );
-};
+const Root = () => <Provider store={store}>
+  <MuiThemeProvider theme={theme}>
+    <Router history={history}>
+      {App}
+    </Router>
+  </MuiThemeProvider>
+</Provider >;
 
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    // This wierd line is over here beacuse the browser doesn't update the view the
-    // hmr act, when we require the app again the view is updating
-    const justToRequire = require('./App').default;
-    renderApp();
-  });
-}
+render(<Root />, document.getElementById('root'));
 
-renderApp();
+export default hot(module)(Root);

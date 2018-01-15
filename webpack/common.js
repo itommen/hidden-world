@@ -1,17 +1,14 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const webpack = require('webpack');
 
 const publicPath = 'http://localhost:8080/';
 
 module.exports = {
   entry: [
-    'react-hot-loader/patch',
     './client/index.js'
   ],
   output: {
-    path: path.join(__dirname, 'dist/client'),
+    path: path.join(__dirname, '..', 'dist/client'),
     filename: '[name].[hash].js',
     publicPath
   },
@@ -52,24 +49,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './client/index.html'
-    }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: publicPath })
+    })
   ],
   resolve: {
     extensions: ['.js', 'jsx', '.less', '.css', '.html']
-  },
-  devServer: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:2222/',
-        secure: false
-      }
-    },
-    historyApiFallback: true,
-    hotOnly: true
-  },
-  devtool: 'source-map',
-  watch: true
+  }
 };
