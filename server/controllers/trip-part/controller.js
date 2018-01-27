@@ -1,12 +1,8 @@
-import empty from 'http-reject-empty';
-
-import { noop } from 'lodash';
-
 import db from '../../config/mongoose';
 
 import convert from '../common/convert';
-
-import validate from '../common/validate';
+import { byId } from '../common/validated-query';
+import ensure from '../common/validate';
 import validation from '~/common/validators/tripPart';
 
 const TripPart = db.model('TripPart');
@@ -18,36 +14,36 @@ const fullProperties = [
   { orignalName: 'images', newName: 'savedImages' }
 ];
 
-export function getAll() {
-  return TripPart.find()
-    .then(x => x.map(tripPart => convert(tripPart, mimizedProperties)));
+export async function getAll() {
+  const tripParts = await TripPart.find();
+  return tripParts.map(tripPart => convert(tripPart, mimizedProperties));
 }
 
-export function fetch({ params: { id } }) {
-  return TripPart.findById(id)
-    .then(empty)
-    .then(result => convert(result, fullProperties));
+export async function fetch({ params: { id } }) {
+  const tripPart = await byId(TripPart, id);
+  return convert(tripPart, fullProperties);
 }
 
-export function insert({ body, files }) {
-  return validate(body, validation)
-    .then(() => {
-      body.images = files.map(({ filename }) => filename);
-    })
-    .then(() => new TripPart(body).save())
-    .then(tripPart => convert(tripPart, mimizedProperties));
+export async function insert({ body, files }) {
+  ensure(body, validation);
+
+  const tripPart = await new TripPart({
+    ...body,
+    images: files.map(({ filename }) => filename)
+  }).save();
+
+  return convert(tripPart, mimizedProperties);
 }
 
-export function update({ body, files }) {
-  return validate(body, validation)
-    .then(() => TripPart.findById(body.id).exec())
-    .then(tripPart => {
-      const images = tripPart.images.concat(files.map(({ filename }) => filename));
-      tripPart.$set({
-        ...body,
-        images
-      });
-      return tripPart.save();
-    })
-    .then(noop);
+export async function update({ body, files }) {
+  ensure(body, validation);
+
+  const tripPart = await TripPart.findById(body.id).exec();
+
+  tripPart.$set({
+    ...body,
+    images: tripPart.images.concat(files.map(({ filename }) => filename))
+  });
+
+  await tripPart.save();
 }

@@ -4,13 +4,11 @@ import { loadCountries } from './ManageCountries/redux';
 
 import alerter from '../common/alerter';
 
-export default function () {
+export default async function () {
   const { dispatch } = store;
 
-  dispatch(loadCountries())
-    .then(({ error }) => {
-      if (error) {
-        alerter({ message: 'loading countries failed' });
-      }
-    });
+  const { error } = await dispatch(loadCountries());
+  if (error) {
+    alerter({ message: 'loading countries failed' });
+  }
 }

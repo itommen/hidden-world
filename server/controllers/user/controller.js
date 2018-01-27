@@ -1,35 +1,27 @@
-import empty from 'http-reject-empty';
-import { noop } from 'lodash';
+import convert from '../common/convert';
+import { byParams, byId } from '../common/validated-query';
 
 import db from '../../config/mongoose';
 import { sign } from '../common/jwt';
 
-function convertUser(user) {
+const properties = ['id', 'firstName', 'lastName'];
+
+const User = db.model('User');
+
+export async function login({ body: { userName, password } }) {
+  const user = await byParams(User, {
+    userName,
+    password
+  });
+
+  const converted = convert(user, properties);
+
   return {
-    id: user.id,
-    firstName: user.firstName,
-    lastName: user.lastName
+    token: sign(converted),
+    converted
   };
 }
 
-export function login({ body: { userName, password } }) {
-  const User = db.model('User');
-
-  return User.findOne({
-    userName,
-    password
-  })
-    .then(empty)
-    .then(convertUser)
-    .then(user => ({
-      token: sign(user),
-      user
-    }));
-}
-
-export function auth({ user: { id } }) {
-  const User = db.model('User');
-
-  return User.findById(id)
-    .then(noop);
+export async function auth({ user: { id } }) {
+  await byId(User, id);
 }

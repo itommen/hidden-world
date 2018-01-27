@@ -44,6 +44,13 @@ app.route('/*')
     res.sendFile(join(__dirname, '..', 'client', 'index.html'));
   });
 
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.send({
+    message: err.message || 'Bad Request'
+  });
+});
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   // TODO: check about that. maybe should just return the deafult file.

@@ -17,21 +17,23 @@ const mapStateToProps = ({ countries }) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addCountries: countries => dispatch(addCountries(countries))
-      .then(({ error }) => alerter({
-        message: error
-          ? 'add countries failed'
-          : 'add countries succsed'
-      })),
-    removeCountries: countries => dispatch(removeCountries(countries))
-      .then(({ error }) => alerter({
-        message: error
-          ? 'remove countries failed'
-          : 'remove countries succsed'
-      }))
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  addCountries: async function (countries) {
+    const { error } = await dispatch(addCountries(countries));
+    alerter({
+      message: error
+        ? 'add countries failed'
+        : 'add countries succsed'
+    });
+  },
+  removeCountries: async function (countries) {
+    const { error } = await dispatch(removeCountries(countries));
+    alerter({
+      message: error
+        ? 'remove countries failed'
+        : 'remove countries succsed'
+    });
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCountries);

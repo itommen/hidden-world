@@ -1,8 +1,9 @@
 import { isEmpty } from 'lodash';
+import createError from 'http-errors';
 
 export default function (values, validator) {
   const validationErrors = validator(values);
-  return isEmpty(validationErrors)
-    ? Promise.resolve()
-    : Promise.reject(validationErrors);
+  if (!isEmpty(validationErrors)) {
+    throw createError(500, 'Validation Error');
+  }
 }

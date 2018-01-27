@@ -5,6 +5,7 @@ const publicPath = 'http://localhost:8080/';
 
 module.exports = {
   entry: [
+    'babel-polyfill',
     './client/index.js'
   ],
   output: {

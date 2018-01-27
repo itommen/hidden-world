@@ -10,16 +10,14 @@ const mapStateToProps = ({ countries: { relevant = [] } = {} }) => ({
 });
 
 const mapDispatchToProps = (dispath, { action }) => ({
-  onSubmit: data => {
-    dispath(action(data))
-      .then(({ error }) => {
-        if (error) {
-          alerter({ message: 'save failed' });
-        } else {
-          alerter({ message: 'save succsed' });
-          redirect('tripPart');
-        }
-      });
+  onSubmit: async function (data) {
+    const { error } = await dispath(action(data));
+    if (error) {
+      alerter({ message: 'save failed' });
+    } else {
+      alerter({ message: 'save succsed' });
+      redirect('tripPart');
+    }
   }
 });
 

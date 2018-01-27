@@ -41,7 +41,7 @@
     "material-ui-password-field": "^1.2.2",
     "mongoose-seed": "^0.4.1",
     "nodemon": "^1.14.11",
-    "open-browser-webpack-plugin": "0.0.5",
+    "open-browser-webpacknp-plugin": "0.0.5",
     "promise-file-reader": "^1.0.0",
     "react": "^16.2.0",
     "react-addons-test-utils": "^15.6.2",

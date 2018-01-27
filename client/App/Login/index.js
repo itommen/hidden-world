@@ -8,19 +8,17 @@ import { login as loginAction } from './redux';
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispath => ({
-  onSubmit: data => {
-    dispath(loginAction(data))
-      .then(({ error }) => {
-        if (!error) {
-          return;
-        }
+  onSubmit: async function (data) {
+    const { error } = await dispath(loginAction(data))
+    if (!error) {
+      return;
+    }
 
-        alerter({
-          message: error.response.status === 404
-            ? 'Login failed. Username or password is inncorect'
-            : 'Login failed. Something happened durring login, please try again later'
-        });
-      });
+    alerter({
+      message: error.response.status === 404
+        ? 'Login failed. Username or password is inncorect'
+        : 'Login failed. Something happened durring login, please try again later'
+    });
   }
 });
 

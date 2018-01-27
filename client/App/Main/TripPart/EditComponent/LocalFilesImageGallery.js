@@ -36,18 +36,18 @@ export default class LocalFilesImageGallery extends Component {
     }
   }
 
-  updateGalleryItems() {
+  async updateGalleryItems() {
     const { files = [] } = this.props;
 
     if (files && files.length) {
-      Promise.all([...files].map(readAsDataURL))
-        .then(images => this.setState(state => ({
-          ...state,
-          images: images.map(x => ({
-            original: x,
-            thumbnail: x
-          }))
-        })));
+      const images = await Promise.all([...files].map(readAsDataURL));
+      this.setState(state => ({
+        ...state,
+        images: images.map(x => ({
+          original: x,
+          thumbnail: x
+        }))
+      }));
     }
   }
 
