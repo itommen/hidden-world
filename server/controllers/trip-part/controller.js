@@ -11,7 +11,8 @@ const mimizedProperties = ['id', 'name', 'days', 'start', 'end', 'flight'];
 const fullProperties = [
   ...mimizedProperties,
   'description',
-  { orignalName: 'images', newName: 'savedImages' }
+  { orignalName: 'images', newName: 'savedImages' },
+  'hotels'
 ];
 
 export async function getAll() {

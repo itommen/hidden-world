@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import FeaturedHotel from '../FeaturedHotel';
+
 const LocationSchema = mongoose.Schema({
   country: {
     type: String,
@@ -29,6 +31,10 @@ const TripPart = mongoose.Schema({
   days: {
     type: Number,
     required: true
+  },
+  hotels: {
+    type: [FeaturedHotel],
+    required: false
   },
   images: {
     type: [String],

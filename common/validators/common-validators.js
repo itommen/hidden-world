@@ -17,3 +17,9 @@ export function maxLength(max) {
 export function number(value) {
   return /^\d+$/.test(value) ? null : 'Value must be number';
 }
+
+export function range(minValue, maxValue) {
+  return value => value >= minValue && value <= maxValue
+    ? null
+    : `value must be at range ${minValue} to ${maxValue}`;
+}

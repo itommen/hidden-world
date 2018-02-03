@@ -19,6 +19,7 @@ import validate from '~/common/validators/tripPart';
 import { domestic, foreign } from '../flight-type.const';
 
 import CheckboxGroup from '../../../common/CheckboxGroup';
+import FeaturedHotels from './FeaturedHotels';
 
 // TODO: maybe use it when waiting for login
 // import CircularProgress from 'material-ui/CircularProgress';
@@ -85,6 +86,11 @@ class InsertTripPart extends React.Component {
               type='number'
               InputProps={{ inputProps: { min: 1 } }}
               label='כמה ימים' />
+
+            <Field name='hotels'
+              component={FeaturedHotels}
+              label={'מלונות'}
+            />
 
             <Field name='images'
               component={ImageUploader}
