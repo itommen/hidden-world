@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Button from 'material-ui/Button';
-import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card';
 import { FormControl } from 'material-ui/Form';
 import Typography from 'material-ui/Typography';
 
@@ -46,71 +45,65 @@ class InsertTripPart extends React.Component {
 
     return <Flex auto>
       <form onSubmit={handleSubmit} style={{ flex: '1 1 auto' }}>
-        <Card>
-          <CardHeader title={'יום טיול'} subheader='' />
-          <CardContent>
-            <FormControl>
-              <Field name='name'
-                label='שם ליום טיול'
-                component={TextField} />
-            </FormControl>
-            <FormSection name='start'>
-              <Flex>
-                <Typography>יציאה מ</Typography>
-                <LocationSelector countries={countries} data={data.start} />
-              </Flex>
-            </FormSection>
+        <Typography type='display3'>יום טיול</Typography>
+        <FormControl>
+          <Field name='name'
+            label='שם ליום טיול'
+            component={TextField} />
+        </FormControl>
+        <FormSection name='start'>
+          <Flex>
+            <Typography>יציאה מ</Typography>
+            <LocationSelector countries={countries} data={data.start} />
+          </Flex>
+        </FormSection>
 
-            <FormSection name='end'>
-              <Flex>
-                <Typography>הגעה ל</Typography>
-                <LocationSelector countries={countries} data={data.end} />
-              </Flex>
-            </FormSection>
+        <FormSection name='end'>
+          <Flex>
+            <Typography>הגעה ל</Typography>
+            <LocationSelector countries={countries} data={data.end} />
+          </Flex>
+        </FormSection>
 
-            <Field name='flight'
-              component={CheckboxGroup}
-              items={[{ key: domestic, label: 'פנים' }, { key: foreign, label: 'חוץ' }]}
-              formLabel='טיסות'
-            />
+        <Field name='flight'
+          component={CheckboxGroup}
+          items={[{ key: domestic, label: 'פנים' }, { key: foreign, label: 'חוץ' }]}
+          formLabel='טיסות'
+        />
 
-            <Field name='description'
-              component={TextField}
-              label='תיאור'
-              multiline={true}
-              rows={2}
-              fullWidth={true} />
+        <Field name='description'
+          component={TextField}
+          label='תיאור'
+          multiline={true}
+          rows={2}
+          fullWidth={true} />
 
-            <Field name='days'
-              component={TextField}
-              type='number'
-              InputProps={{ inputProps: { min: 1 } }}
-              label='כמה ימים' />
+        <Field name='days'
+          component={TextField}
+          type='number'
+          InputProps={{ inputProps: { min: 1 } }}
+          label='כמה ימים' />
 
-            <Field name='hotels'
-              component={FeaturedHotels}
-              label={'מלונות'}
-            />
+        <Field name='hotels'
+          component={FeaturedHotels}
+          label={'מלונות'}
+        />
 
-            <Field name='images'
-              component={ImageUploader}
-              images={images}
-            />
+        <Field name='images'
+          component={ImageUploader}
+          images={images}
+        />
 
-          </CardContent>
-          <CardActions>
-            <Button
-              raised
-              type='submit'
-              name={'login'}
-              disabled={submitting}
-              color='primary'>
+        <Button
+          raised
+          type='submit'
+          name={'login'}
+          disabled={submitting}
+          color='primary'>
               שמור
-            </Button>
-          </CardActions>
-        </Card>
+        </Button>
       </form>
-    </Flex >;
+    </Flex>;
   }
 }
 
