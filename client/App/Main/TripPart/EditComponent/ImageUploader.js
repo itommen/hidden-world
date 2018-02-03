@@ -7,7 +7,7 @@ import LocalFilesImageGallery from './LocalFilesImageGallery';
 export default ({ input: { onChange, value }, images }) => <Card>
   <CardHeader title='תמונות מהיום' subheader={<input type='file'
     multiple
-    // accept='image/*'
+    accept='image/*'
     onChange={({ target: { files } }) => onChange(files)} />} />
   <CardContent>
     {
