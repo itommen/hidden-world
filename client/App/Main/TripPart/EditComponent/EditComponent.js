@@ -1,36 +1,44 @@
 import React from 'react';
 
 import Button from 'material-ui/Button';
-import { FormControl } from 'material-ui/Form';
 import Typography from 'material-ui/Typography';
-
-import ImageUploader from './ImageUploader';
+import Stepper, { Step, StepButton } from 'material-ui/Stepper';
 
 import { Flex } from 'reflexbox';
-import { reduxForm, Field, FormSection } from 'redux-form';
-
-import { TextField } from 'redux-form-material-ui';
-
-import LocationSelector from './LocationSelector';
+import { reduxForm } from 'redux-form';
 
 import validate from '~/common/validators/tripPart';
 
-import { domestic, foreign } from '../flight-type.const';
+import { GeneralInfo, Description, Images } from './Steps';
 
-import CheckboxGroup from '../../../common/CheckboxGroup';
-import FeaturedHotels from './FeaturedHotels';
+const steps = [
+  {
+    label: 'פרטים כללים',
+    step: GeneralInfo,
+    params: ['start', 'end', 'countries']
+  },
+  {
+    label: 'תיאור היום',
+    step: Description
+  },
+  {
+    label: 'תמונות מהיום',
+    step: Images,
+    params: ['savedImages']
+  }];
 
-// TODO: maybe use it when waiting for login
-// import CircularProgress from 'material-ui/CircularProgress';
 class InsertTripPart extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      name: '',
-      pictures: {}
+      completed: {},
+      activeStep: 0
     };
+
+    this.handleMoveStep = this.handleMoveStep.bind(this);
   }
+
   componentWillMount() {
     const { data, initialize } = this.props;
 
@@ -39,69 +47,55 @@ class InsertTripPart extends React.Component {
     }
   }
 
+  handleMoveStep(index) {
+    this.setState(state => ({ ...state, activeStep: index }));
+  }
+
   render() {
     const { handleSubmit, countries, submitting, data = {} } = this.props;
-    const images = data.savedImages || [];
+    const { activeStep } = this.state;
+
+    const stepsData = {
+      ...data,
+      countries
+    };
+    const step = steps[activeStep];
+    const StepComponent = step.step;
+    const stepParams = (step.params || []).reduce((result, current) => ({
+      ...result,
+      [current]: stepsData[current]
+    }), {});
 
     return <Flex auto>
-      <form onSubmit={handleSubmit} style={{ flex: '1 1 auto' }}>
+      <form onSubmit={handleSubmit} style={{
+        display: 'flex',
+        flex: '1 1 auto',
+        flexDirection: 'column'
+      }}>
         <Typography type='display3'>יום טיול</Typography>
-        <FormControl>
-          <Field name='name'
-            label='שם ליום טיול'
-            component={TextField} />
-        </FormControl>
-        <FormSection name='start'>
-          <Flex>
-            <Typography>יציאה מ</Typography>
-            <LocationSelector countries={countries} data={data.start} />
-          </Flex>
-        </FormSection>
-
-        <FormSection name='end'>
-          <Flex>
-            <Typography>הגעה ל</Typography>
-            <LocationSelector countries={countries} data={data.end} />
-          </Flex>
-        </FormSection>
-
-        <Field name='flight'
-          component={CheckboxGroup}
-          items={[{ key: domestic, label: 'פנים' }, { key: foreign, label: 'חוץ' }]}
-          formLabel='טיסות'
-        />
-
-        <Field name='description'
-          component={TextField}
-          label='תיאור'
-          multiline={true}
-          rows={2}
-          fullWidth={true} />
-
-        <Field name='days'
-          component={TextField}
-          type='number'
-          InputProps={{ inputProps: { min: 1 } }}
-          label='כמה ימים' />
-
-        <Field name='hotels'
-          component={FeaturedHotels}
-          label={'מלונות'}
-        />
-
-        <Field name='images'
-          component={ImageUploader}
-          images={images}
-        />
-
-        <Button
-          raised
-          type='submit'
-          name={'login'}
-          disabled={submitting}
-          color='primary'>
-              שמור
+        <Stepper nonLinear activeStep={activeStep}>
+          {
+            steps.map(({ label }, index) => <Step key={label}>
+              <StepButton
+                onClick={() => this.handleMoveStep(index)}
+                completed={this.state.completed[index]}
+              >
+                {label}
+              </StepButton>
+            </Step>)
+          }
+        </Stepper>
+        <Flex column auto id='test5' justify='space-between'>
+          <StepComponent {...stepParams} />
+          <Button
+            raised
+            type='submit'
+            name={'login'}
+            disabled={submitting}
+            color='primary'>
+            שמור
         </Button>
+        </Flex>
       </form>
     </Flex>;
   }
