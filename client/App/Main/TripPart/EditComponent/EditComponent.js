@@ -94,7 +94,7 @@ class InsertTripPart extends React.Component {
             disabled={submitting}
             color='primary'>
             שמור
-        </Button>
+          </Button>
         </Flex>
       </form>
     </Flex>;

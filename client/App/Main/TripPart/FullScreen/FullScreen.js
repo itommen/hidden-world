@@ -9,60 +9,39 @@ import ImageGallery from 'react-image-gallery';
 
 import FlightIndicator from '../FlightIndicator';
 
-export default class FullScreen extends React.Component {
-  constructor() {
-    super();
+import formatPlace from '../format-location';
 
-    this.formatLoaction = this.formatLoaction.bind(this);
-  }
+export default ({ data: { name, start, end, description, days, flight, savedImages = [] } = {}, loaded }) => !loaded
+  ? <CircularProgress />
+  : <Flex column auto>
 
-  componentWillMount() {
-    const { fetch } = this.props;
-    fetch();
-  }
+    < Typography type='display4' gutterBottom > {name}</Typography >
+    <div>
+      <Typography>מתחיל ב:</Typography>
+      <Typography type='title' gutterBottom>{formatPlace(start)}</Typography>
+    </div>
 
-  formatLoaction({ country, city }) {
-    return `${country}, ${city}`;
-  }
-
-  render() {
-    const { data } = this.props;
-    if (!data) {
-      return <CircularProgress />;
-    }
-
-    const { name, start, end, description, days, flight, savedImages = [] } = data;
-    return <Flex column auto>
-
-      <Typography type='display4' gutterBottom>{name}</Typography>
-      <div>
-        <Typography>מתחיל ב:</Typography>
-        <Typography type='title' gutterBottom>{this.formatLoaction(start)}</Typography>
-      </div>
-
-      <div>
-        <Typography>נגמר ב: </Typography>
-        <Typography type='title' gutterBottom>{this.formatLoaction(end)}</Typography>
-      </div>
-      <div>
-        <Typography>משך: </Typography>
-        <Typography type='title' gutterBottom>{days} ימים</Typography>
-      </div>
-      <FlightIndicator flights={flight} />
-      <div>
-        <Typography type='display3'>תיאור היום</Typography>
-        <Typography>{description}</Typography>
-      </div>
-      <div>
-        <Typography type='display3'>גלריה</Typography>
-        <ImageGallery
-          items={savedImages.map(x => ({
-            original: `/uploads/${x}`,
-            thumbnail: `/uploads/${x}`
-          }))}
-          showPlayButton={false}
-          showIndex={true} />
-      </div>
-    </Flex>;
-  }
-}
+    <div>
+      <Typography>נגמר ב: </Typography>
+      <Typography type='title' gutterBottom>{formatPlace(end)}</Typography>
+    </div>
+    <div>
+      <Typography>משך: </Typography>
+      <Typography type='title' gutterBottom>{days} ימים</Typography>
+    </div>
+    <FlightIndicator flights={flight} />
+    <div>
+      <Typography type='display3'>תיאור היום</Typography>
+      <Typography>{description}</Typography>
+    </div>
+    <div>
+      <Typography type='display3'>גלריה</Typography>
+      <ImageGallery
+        items={savedImages.map(x => ({
+          original: `/uploads/${x}`,
+          thumbnail: `/uploads/${x}`
+        }))}
+        showPlayButton={false}
+        showIndex={true} />
+    </div>
+  </Flex >;

@@ -7,44 +7,35 @@ import { TextField } from 'redux-form-material-ui';
 
 import validate from '~/common/validators/login';
 
-// TODO: maybe use it when waiting for login
-// import CircularProgress from 'material-ui/CircularProgress';
+const LoginForm = ({ handleSubmit }) => <Flex column auto justify='center' align='center'>
+  <form onSubmit={handleSubmit}>
+    <Card>
+      <CardHeader title={'התחבר'} subheader='' />
+      <CardContent>
+        <Flex column auto>
+          <Field name='userName'
+            component={TextField}
+            label='שם משתמש' />
 
-class LoginForm extends React.Component {
-  render() {
-    const { handleSubmit } = this.props;
-
-    return <Flex column auto justify='center' align='center'>
-      <form onSubmit={handleSubmit}>
-        <Card>
-          <CardHeader title={'התחבר'} subheader='' />
-          <CardContent>
-            <Flex column auto>
-              <Field name='userName'
-                component={TextField}
-                label='שם משתמש' />
-
-              <Field name='password'
-                component={TextField}
-                label='סיסמא' />
-            </Flex>
-          </CardContent>
-          <CardActions>
-            <Flex column auto align='center'>
-              <Button
-                raised
-                type='submit'
-                name='login'
-                color='primary'>
-                התחבר
-              </Button>
-            </Flex>
-          </CardActions>
-        </Card>
-      </form>
-    </Flex>;
-  }
-}
+          <Field name='password'
+            component={TextField}
+            label='סיסמא' />
+        </Flex>
+      </CardContent>
+      <CardActions>
+        <Flex column auto align='center'>
+          <Button
+            raised
+            type='submit'
+            name='login'
+            color='primary'>
+            התחבר
+          </Button>
+        </Flex>
+      </CardActions>
+    </Card>
+  </form>
+</Flex>;
 
 export default reduxForm({
   form: 'loginForm',

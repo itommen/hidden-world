@@ -3,7 +3,6 @@ import React from 'react';
 import FlightTakeoffIcon from 'material-ui-icons/FlightTakeoff';
 import Tooltip from 'material-ui/Tooltip';
 
-
 import { domestic, foreign } from './flight-type.const';
 
 export default ({ flights = [] }) => <div>

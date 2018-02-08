@@ -10,7 +10,7 @@ export default (state = {}, { type }) => {
   }
 };
 
-export const login = createAction(LOGIN_ACTION, ({ userName, password }) => ({
+export const login = createAction(LOGIN_ACTION, ({ userName, password } = {}) => ({
   request: {
     url: '/user/login',
     method: 'POST',

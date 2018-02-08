@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import Main from './index';
+import Main from './Main';
 import FullScreen from './FullScreen';
 import Insert from './Insert';
 import Edit from './Edit';

@@ -1,17 +1,19 @@
 {
-    "env": {
+    "env": {        
         "browser": true,
         "node": true,
-        "es6": true
+        "es6": true,
+        "jest/globals": true
     },
     "plugins": [
-        "react"
+        "react",
+        "jest"
     ],
-    "parserOptions": {    
+    "parserOptions": {
         "ecmaVersion": 8,
         "sourceType": "module",
-        "ecmaFeatures": {       
-            "experimentalObjectRestSpread": true,                 
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
             "arrowFunctions": true,
             "binaryLiterals": true,
             "blockBindings": true,
@@ -36,6 +38,11 @@
         }
     },
     "rules": {
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
         //
         //Possible Errors
         //
@@ -54,7 +61,10 @@
         "no-empty": 2, // disallow empty statements        
         "no-ex-assign": 2, // disallow assigning to the exception in a catch block
         "no-extra-boolean-cast": 2, // disallow double-negation boolean casts in a boolean context
-        "no-extra-parens":["error", "all"], // disallow unnecessary parentheses (off by default)
+        "no-extra-parens": [
+            "error",
+            "all"
+        ], // disallow unnecessary parentheses (off by default)
         "no-extra-semi": 2, // disallow unnecessary semicolons
         "no-func-assign": 2, // disallow overwriting functions written as function declarations
         "no-inner-declarations": 2, // disallow function or variable declarations in nested blocks
@@ -156,7 +166,13 @@
         //
         // These rules are purely matters of style and are quite subjective.
         //
-        "indent": [ "error", 2, { "SwitchCase": 1 } ],
+        "indent": [
+            "error",
+            2,
+            {
+                "SwitchCase": 1
+            }
+        ],
         "brace-style": 1, // enforce one true brace style (off by default)
         "camelcase": 1, // require camel case names
         "comma-spacing": [
@@ -257,7 +273,10 @@
                 "named": "never"
             }
         ], // require or disallow space before function opening parenthesis (off by default)        
-        "object-curly-spacing": ["error", "always"],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
         "space-in-parens": [
             1,
             "never"

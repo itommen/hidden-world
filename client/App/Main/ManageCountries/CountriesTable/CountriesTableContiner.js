@@ -59,33 +59,27 @@ export default class CountriesTableContiner extends React.Component {
     return countries.filter(x => toLower(x).includes(lowerCaseFilter));
   }
 
-  getCardBody() {
-    const { loading } = this.props;
-    const { selected } = this.state;
-
-    if (loading) {
-      return <CircularProgress size={70} />;
-    }
-
-    return <Flex column auto>
-      <TextField value={this.state.filter}
-        label='filter countries'
-        onChange={evt => this.updateFilterText(evt)}
-        id='filter'
-        fullWidth={true} />
-      <ContriesTable onSelect={this.handleRowSelection}
-        selected={selected}
-        countries={this.getFilteredCountries()} />
-    </Flex>;
-  }
-
   render() {
     const { title, moveTo, loading } = this.props;
+    const { selected } = this.state;
 
     return <Card style={{ flex: '1 1 auto' }} id='card'>
       <CardHeader title={title} subheader='' />
       <CardContent style={{ height: '50%', overflowY: 'auto' }}>
-        {this.getCardBody()}
+        {
+          loading
+            ? <CircularProgress size={70} />
+            : <Flex column auto>
+              <TextField value={this.state.filter}
+                label='filter countries'
+                onChange={evt => this.updateFilterText(evt)}
+                id='filter'
+                fullWidth={true} />
+              <ContriesTable onSelect={this.handleRowSelection}
+                selected={selected}
+                countries={this.getFilteredCountries()} />
+            </Flex>
+        }
       </CardContent>
       <CardActions>
         {

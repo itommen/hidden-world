@@ -2,16 +2,22 @@ import { connect } from 'react-redux';
 
 import stateValidator from '../common/state-validator';
 
+import { compose, lifecycle } from 'recompose';
+
 import './layout.less';
 import Layout from './Layout';
 
-const mapStateToProps = ({ auth: { isAutorized }, alert }) => ({
-  isAutorized,
-  alert
-});
-
-const mapDispatchToProps = () => ({
-  stateValidator
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default compose(
+  connect(
+    ({ auth: { isAutorized }, alert }) => ({ isAutorized, alert }),
+    () => ({})
+  ),
+  lifecycle({
+    componentWillUpdate() {
+      stateValidator();
+    },
+    componentWillMount() {
+      stateValidator();
+    }
+  })
+)(Layout);
