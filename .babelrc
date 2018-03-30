@@ -3,6 +3,7 @@
   "plugins": [
     "react-hot-loader/babel",
     "transform-object-rest-spread",
+    "transform-async-to-generator",
     "babel-plugin-root-import"
   ]
 }

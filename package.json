@@ -7,8 +7,10 @@
     "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\"",
     "server-dev": "nodemon server/app.js --exec babel-node",
     "client-dev": "webpack-dev-server --config webpack/dev.js",
+    "build": "rimraf dist && npm run build-client && npm run build-server",
     "build-client": "webpack --config webpack/prod.js",
-    "build-server": "babel server -d dist/server",
+    "build-server": "babel server -d dist/server && babel common -d dist/common",
+    "run-server": "node server/app.js",
     "lint-client": "eslint client --fix",
     "lint-server": "eslint server --fix",
     "seed": "babel-node ./commands/seed.js",
@@ -23,7 +25,9 @@
     "babel-jest": "^22.1.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-root-import": "^5.1.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
@@ -46,7 +50,6 @@
     "material-ui-password-field": "^1.2.2",
     "mongoose-seed": "^0.4.1",
     "nodemon": "^1.14.11",
-    "open-browser-webpacknp-plugin": "0.0.5",
     "promise-file-reader": "^1.0.0",
     "react": "^16.2.0",
     "react-addons-test-utils": "^15.6.2",
@@ -76,6 +79,7 @@
     "webpack-merge": "^4.1.1"
   },
   "dependencies": {
+    "rimraf": "^2.6.2",
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "countries-cities": "0.0.11",
@@ -90,7 +94,6 @@
     "lodash": "^4.17.4",
     "mongoose": "^4.13.9",
     "multer": "^1.3.0",
-    "open-browser-webpack-plugin": "0.0.5",
     "path": "^0.12.7",
     "uuid": "^3.1.0"
   }

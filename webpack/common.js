@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const publicPath = 'http://localhost:8080/';
+const publicPath = 'http://localhost:8081/';
 
 module.exports = {
   entry: [
@@ -9,9 +9,9 @@ module.exports = {
     './client/index.js'
   ],
   output: {
-    path: path.join(__dirname, '..', 'dist/client'),
+    path: path.join(__dirname, '..', 'dist', 'client'),
     filename: '[name].[hash].js',
-    publicPath
+    // publicPath
   },
   module: {
     rules: [
@@ -20,7 +20,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-          presets: ['es2015', 'react']
+          presets: ['env', 'react']
         }
       },
       {

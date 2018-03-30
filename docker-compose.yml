@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+     - "9090:2222"    
+    depends_on:
+     - mongo
+    environment:
+     - PORT=2222
+     - SECRET=secret
+     - DB_HOST=mongodb://mongo
+     - DB_NAME=hidden-world
+     - NODE_ENV=production
+  mongo:
+    image: mongo

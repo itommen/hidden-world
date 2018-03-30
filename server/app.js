@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import 'babel-polyfill';
 import express from 'express';
 // import logger from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -21,7 +22,10 @@ asd.once('listening', () => {
   console.log(`server listening at ${PORT}`);
 });
 
+
+const CLIENT_PATH = join(__dirname, '..', 'client');
 app.use(express.static(join(__dirname, 'uploads')));
+app.use(express.static(CLIENT_PATH));
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -30,8 +34,8 @@ bodyParseConfig(app);
 app.use(cookieParser());
 // TODO: maybe move the list of the known urls to another file, check about the auth/token
 
-app.use(jwt({ secret: process.env.SECRET }).unless({ path: ['/api/user/login'] }));
-
+const knownUrls = ['/api/user/login'];
+app.use(jwt({ secret: process.env.SECRET }).unless(({ url }) => !url.startsWith('/api') || knownUrls.includes(url)));
 controllers(app);
 
 app.route('/api/*')
@@ -41,7 +45,7 @@ app.route('/api/*')
 
 app.route('/*')
   .get((req, res) => {
-    res.sendFile(join(__dirname, '..', 'client', 'index.html'));
+    res.sendFile(join(CLIENT_PATH, 'index.html'));
   });
 
 app.use(function (err, req, res, next) {
