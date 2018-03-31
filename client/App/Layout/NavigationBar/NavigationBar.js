@@ -24,5 +24,9 @@ export default ({ selected, handleChange }) => <Paper elevation={20}>
       label='Manage Countries'
       icon={<LocationOnIcon />}
     />
+    <BottomNavigationAction
+      label='Users'
+      icon={<LocationOnIcon />}
+    />
   </BottomNavigation>
 </Paper>;

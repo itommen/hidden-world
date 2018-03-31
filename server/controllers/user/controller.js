@@ -4,9 +4,15 @@ import { byParams, byId } from '../common/validated-query';
 import db from '../../config/mongoose';
 import { sign } from '../common/jwt';
 
-const properties = ['id', 'firstName', 'lastName'];
+const loginProperties = ['id', 'firstName', 'lastName'];
+
+const usersMinimizedProperties = [...loginProperties, 'userName'];
 
 const User = db.model('User');
+
+export async function getAll() {
+  return (await User.find()).map(x => convert(x, usersMinimizedProperties));
+}
 
 export async function login({ body: { userName, password } }) {
   const user = await byParams(User, {
@@ -14,7 +20,7 @@ export async function login({ body: { userName, password } }) {
     password
   });
 
-  const converted = convert(user, properties);
+  const converted = convert(user, loginProperties);
 
   return {
     token: sign(converted),

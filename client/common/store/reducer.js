@@ -8,6 +8,7 @@ import login from '../../App/Login/redux';
 import auth from '../auth/redux';
 import countries from '../../App/Main/ManageCountries/redux';
 import tripParts from '../../App/Main/TripPart/redux';
+import users from '../../App/Main/Users/redux';
 
 export default combineReducers({
   routing,
@@ -16,5 +17,6 @@ export default combineReducers({
   auth,
   countries,
   tripParts,
-  alert
+  alert,
+  users
 });
