@@ -4,7 +4,7 @@ import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
 
 // import redirect from '../../../common/navigation';
-// import NewButton from '../../../common/new-button';
+import NewButton from '../../common/new-button';
 
 export default ({ users = [] }) => <Fragment>
   <List>
@@ -19,5 +19,5 @@ export default ({ users = [] }) => <Fragment>
       </ListItemSecondaryAction>
     </ListItem>)}
   </List>
-  {/* <NewButton path={'users/new/'} /> */}
+  <NewButton path={'users/new/'} />
 </Fragment>;
