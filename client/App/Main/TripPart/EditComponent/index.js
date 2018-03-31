@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispath, { action }) => ({
       alerter({ message: 'save failed' });
     } else {
       alerter({ message: 'save succsed' });
-      redirect('tripPart');
+      redirect('/tripPart');
     }
   }
 });
