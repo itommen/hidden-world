@@ -85,7 +85,7 @@ class InsertTripPart extends React.Component {
             </Step>)
           }
         </Stepper>
-        <Flex column auto id='test5' justify='space-between'>
+        <Flex column auto justify='space-between'>
           <StepComponent {...stepParams} />
           <Button
             raised

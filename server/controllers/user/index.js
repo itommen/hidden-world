@@ -1,9 +1,11 @@
 import { AsyncRouter } from 'express-async-router';
 
-import { login, auth } from './controller';
+import { login, auth, getAll, insert, fetch } from './controller';
 
 const router = AsyncRouter();
 
+router.get('/', getAll);
+router.post('/', insert)
 router.post('/login', login);
 router.post('/auth', auth);
 

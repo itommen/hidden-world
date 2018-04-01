@@ -16,8 +16,7 @@ const fullProperties = [
 ];
 
 export async function getAll() {
-  const tripParts = await TripPart.find();
-  return tripParts.map(tripPart => convert(tripPart, mimizedProperties));
+  return (await TripPart.find()).map(tripPart => convert(tripPart, mimizedProperties));
 }
 
 export async function fetch({ params: { id } }) {

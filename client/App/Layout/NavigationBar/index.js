@@ -3,7 +3,7 @@ import { compose } from 'recompose';
 
 import redirect from '../../common/navigation';
 
-const NavigationState = ['', 'tripPart', 'manageCountries'];
+const NavigationState = ['', 'tripPart', 'manageCountries', 'users'];
 
 import NavigationBar from './NavigationBar';
 
