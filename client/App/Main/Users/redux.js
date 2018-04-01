@@ -3,6 +3,7 @@ import { resolve, reject } from 'redux-simple-promise';
 
 export const LOAD_USERS = 'LOAD_USERS';
 export const ADD_USER = 'ADD_USER';
+export const FETCH_USER = 'FETCh_USER';
 export const REMOVE_USER = 'REMOVE_USER';
 
 const internalState = {
@@ -23,13 +24,26 @@ export default (state = internalState, { type, payload: { data } = {} }) => {
       return { ...state, loading: false };
     }
 
+    case resolve(FETCH_USER): {
+      const { id } = data;
+      return {
+        ...state,
+        [id]: data
+      }
+    }
+
+    case reject(FETCH_USER): {
+      // TODO: Should alert and redirect back to list
+      return { ...state }
+    }
+
     case resolve(ADD_USER): {
-      debugger;
+      // TODO: Shoud redirect to the user page
       return { ...state };
     }
 
     case reject(ADD_USER): {
-      debugger;
+      // TODO: should alert failure
       return { ...state };
     }
 
@@ -42,6 +56,14 @@ export default (state = internalState, { type, payload: { data } = {} }) => {
 export const loadUsers = createAction(LOAD_USERS, () => ({
   request: {
     url: '/user',
+    method: 'GET'
+  }
+})
+);
+
+export const fetch = createAction(FETCH_USER, id => ({
+  request: {
+    url: `/user/${id}`,
     method: 'GET'
   }
 })

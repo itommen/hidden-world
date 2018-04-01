@@ -6,6 +6,7 @@ const router = AsyncRouter();
 
 router.get('/', getAll);
 router.post('/', insert)
+router.get('/:id', fetch);
 router.post('/login', login);
 router.post('/auth', auth);
 

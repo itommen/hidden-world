@@ -8,9 +8,10 @@ import NewButton from '../../common/new-button';
 
 export default ({ users = [] }) => <Fragment>
   <List>
-    {users.map(({ id, firstName, lastName, userName }) => <ListItem
+    {users.map(({ id, firstName, lastName, userName }) => <ListItem button
       key={id}
-      divider={true}>
+      divider={true}
+      onClick={() => redirect(`/users/${id}`)}>
       <ListItemText
         primary={`${firstName} ${lastName}`}
         secondary={userName} />
