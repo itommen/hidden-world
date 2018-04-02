@@ -1,14 +1,12 @@
 import React from 'react';
 
 import { Flex } from 'reflexbox';
-import Snackbar from 'material-ui/Snackbar';
-
-import { clearAlert } from '../common/alerter';
 
 import Toolbar from './Toolbar';
 import NavigationBar from './NavigationBar';
+import Popups from './Popups';
 
-export default ({ isAutorized, alert: { isOpen, message, autoHideDuration }, children }) =>
+export default ({ isAutorized, alert, dialog, children }) =>
   <Flex id='root' column auto>
     <Toolbar isAutorized={isAutorized} />
     {isAutorized ? <NavigationBar /> : null}
@@ -17,10 +15,5 @@ export default ({ isAutorized, alert: { isOpen, message, autoHideDuration }, chi
     }}>
       {children}
     </Flex>
-    <Snackbar
-      open={isOpen}
-      message={message}
-      autoHideDuration={autoHideDuration}
-      onClose={clearAlert}
-    />
+    <Popups alert={alert} dialog={dialog} />
   </Flex>;

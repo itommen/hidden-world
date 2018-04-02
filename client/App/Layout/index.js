@@ -9,7 +9,7 @@ import Layout from './Layout';
 
 export default compose(
   connect(
-    ({ auth: { isAutorized }, alert }) => ({ isAutorized, alert }),
+    ({ auth: { isAutorized }, alert, dialog }) => ({ isAutorized, alert, dialog }),
     () => ({})
   ),
   lifecycle({
