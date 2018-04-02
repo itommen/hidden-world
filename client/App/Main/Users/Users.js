@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
+import LeftListItemSecondaryAction from '../../common/LeftListItemSecondaryAction';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
+import IconButton from 'material-ui/IconButton';
 
 import redirect from '../../common/navigation';
 import NewButton from '../../common/new-button';
@@ -15,9 +17,11 @@ export default ({ users = [] }) => <Fragment>
       <ListItemText
         primary={`${firstName} ${lastName}`}
         secondary={userName} />
-      <ListItemSecondaryAction>
-        <ModeEditIcon onClick={() => redirect(`/users/${id}/edit`)} />
-      </ListItemSecondaryAction>
+      <LeftListItemSecondaryAction>
+        <IconButton>
+          <ModeEditIcon onClick={() => redirect(`/users/${id}/edit`)} />
+        </IconButton>
+      </LeftListItemSecondaryAction>
     </ListItem>
     )}
   </List>

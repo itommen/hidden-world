@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import LeftListItemSecondaryAction from '../../../common/LeftListItemSecondaryAction';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
+import IconButton from 'material-ui/IconButton';
 
 import redirect from '../../../common/navigation';
 import NewButton from '../../../common/new-button';
@@ -17,9 +19,11 @@ export default ({ tripParts = [] }) => <Fragment>
       <ListItemText
         primary={<PrimaryText name={name} start={start} end={end} flight={flight} />}
         secondary={`${days} ימים`} />
-      <ListItemSecondaryAction>
-        <ModeEditIcon onClick={() => redirect(`tripPart/${id}/edit`)} />
-      </ListItemSecondaryAction>
+      <LeftListItemSecondaryAction>
+        <IconButton>
+          <ModeEditIcon onClick={() => redirect(`tripPart/${id}/edit`)} />
+        </IconButton>
+      </LeftListItemSecondaryAction>
     </ListItem>)}
   </List>
   <NewButton path={'tripPart/new/'} />
