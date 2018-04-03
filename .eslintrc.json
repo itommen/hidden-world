@@ -1,5 +1,5 @@
 {
-    "env": {        
+    "env": {
         "browser": true,
         "node": true,
         "es6": true,
@@ -42,13 +42,7 @@
         "jest/no-focused-tests": "error",
         "jest/no-identical-title": "error",
         "jest/prefer-to-have-length": "warn",
-        "jest/valid-expect": "error"
-        //
-        //Possible Errors
-        //
-        // The following rules point out areas where you might have made mistakes.
-        //
-        //"indentSwitchCase": true,
+        "jest/valid-expect": "error",        
         "comma-dangle": 2, // disallow or enforce trailing commas
         "no-cond-assign": 2, // disallow assignment in conditional expressions
         "no-console": 1, // disallow use of console (off by default in the node environment)
@@ -272,7 +266,7 @@
                 "anonymous": "always",
                 "named": "never"
             }
-        ], // require or disallow space before function opening parenthesis (off by default)        
+        ],
         "object-curly-spacing": [
             "error",
             "always"
