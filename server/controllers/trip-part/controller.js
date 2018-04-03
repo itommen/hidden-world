@@ -47,3 +47,7 @@ export async function update({ body, files }) {
 
   await tripPart.save();
 }
+
+export async function remove({ params: { id } }) {
+  await TripPart.findByIdAndRemove(id);
+}

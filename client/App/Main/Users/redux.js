@@ -29,7 +29,7 @@ export default (state = internalState, { type, payload: { data } = {} }) => {
       return {
         ...state,
         [id]: data
-      }
+      };
     }
 
     case reject(FETCH_USER): {

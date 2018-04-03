@@ -10,6 +10,6 @@ export default class LeftListItemSecondaryAction extends ListItemSecondaryAction
       left: '4px'
     }}>
       {children}
-    </ListItemSecondaryAction>
+    </ListItemSecondaryAction>;
   }
 }
