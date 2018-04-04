@@ -3,6 +3,8 @@ import React from 'react';
 import { CircularProgress } from 'material-ui/Progress';
 import Typography from 'material-ui/Typography';
 
+import { Parser } from 'html-to-react';
+
 import { Flex } from 'reflexbox';
 
 import ImageGallery from 'react-image-gallery';
@@ -32,7 +34,7 @@ export default ({ data: { name, start, end, description, days, flight, savedImag
     <FlightIndicator flights={flight} />
     <div>
       <Typography type='display3'>תיאור היום</Typography>
-      <Typography>{description}</Typography>
+      {new Parser().parse(description)}
     </div>
     <div>
       <Typography type='display3'>גלריה</Typography>
