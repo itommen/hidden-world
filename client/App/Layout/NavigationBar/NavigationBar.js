@@ -3,6 +3,8 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 
 import HomeIcon from 'material-ui-icons/Home';
+import PersonIcon from 'material-ui-icons/Person';
+import ExtensionIcon from 'material-ui-icons/extension';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
@@ -18,7 +20,7 @@ export default ({ selected, handleChange }) => <Paper elevation={20}>
     />
     <BottomNavigationAction
       label='Trip Part'
-      icon={<LocationOnIcon />}
+      icon={<ExtensionIcon />}
     />
     <BottomNavigationAction
       label='Manage Countries'
@@ -26,7 +28,7 @@ export default ({ selected, handleChange }) => <Paper elevation={20}>
     />
     <BottomNavigationAction
       label='Users'
-      icon={<LocationOnIcon />}
+      icon={<PersonIcon />}
     />
   </BottomNavigation>
 </Paper>;
