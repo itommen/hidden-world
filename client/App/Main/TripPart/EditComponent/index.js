@@ -19,5 +19,4 @@ export default connect(
         redirect('/tripPart');
       }
     }
-  }))
-  (EditComponent);
+  }))(EditComponent);

@@ -1,7 +1,11 @@
 import { createAction } from 'redux-actions';
 import { resolve, reject } from 'redux-simple-promise';
 
-import { without } from 'lodash';
+import {
+  started as deleteStarted,
+  resolved as deleteResolved,
+  rejected as deleteRejected
+} from '../../common/redux-actions/delete';
 
 // TODO: Change the names of the vars (only vars!) to 'LOAD', 'INSERT' and so on
 export const LOAD_TRIP_PARTS = 'LOAD_TRIP_PARTS';
@@ -12,7 +16,8 @@ export const DELETE_TRIP_PART = 'DELETE_TRIP_PART';
 
 const internalState = {
   loading: false,
-  data: []
+  data: [],
+  deleted: []
 };
 
 export default (state = internalState, { type, payload: { data, request } = {}, meta }) => {
@@ -41,35 +46,15 @@ export default (state = internalState, { type, payload: { data, request } = {}, 
     // TODO: add reject
 
     case DELETE_TRIP_PART: {
-      const { id } = request;
-      const tripPartToRemove = state.data.find(x => x.id === id);
-      const newTripParts = without(state.data, tripPartToRemove);
-
-      return {
-        ...state,
-        data: newTripParts,
-        deleted: [...(state.deleted || []), tripPartToRemove]
-      };
+      return deleteStarted(state, request);
     }
 
     case resolve(DELETE_TRIP_PART): {
-      const { previousAction: { payload: { request: { id } } } } = meta;
-      const deleted = state.deleted.filter(x => x.id !== id);
-
-      return {
-        ...state,
-        deleted
-      };
+      return deleteResolved(state, meta);
     }
 
     case reject(DELETE_TRIP_PART): {
-      const { previousAction: { payload: { request: { id } } } } = meta;
-      const removedTripPart = state.deleted.find(x => x.id === id);
-
-      return {
-        ...state,
-        data: [...(state.data), removedTripPart]
-      };
+      return deleteRejected(state, meta);
     }
 
     default: {

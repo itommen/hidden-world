@@ -10,7 +10,7 @@ import { sign } from '../common/jwt';
 const loginProperties = ['id', 'firstName', 'lastName'];
 
 const usersMinimizedProperties = [...loginProperties, 'userName'];
-const userFullProperties = [ ...usersMinimizedProperties, 'email']
+const userFullProperties = [...usersMinimizedProperties, 'email']
 
 const User = db.model('User');
 
@@ -28,7 +28,6 @@ export async function insert({ body }) {
 
 export async function fetch({ params: { id } }) {
   const user = await byId(User, id);
-  debugger;
   return convert(user, userFullProperties);
 }
 
@@ -48,4 +47,8 @@ export async function login({ body: { userName, password } }) {
 
 export async function auth({ user: { id } }) {
   await byId(User, id);
+}
+
+export async function remove({ params: { id } }) {
+  await User.findByIdAndRemove(id);
 }

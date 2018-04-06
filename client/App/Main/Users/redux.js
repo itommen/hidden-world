@@ -1,16 +1,23 @@
 import { createAction } from 'redux-actions';
 import { resolve, reject } from 'redux-simple-promise';
 
+import {
+  started as deleteStarted,
+  resolved as deleteResolved,
+  rejected as deleteRejected
+} from '../../common/redux-actions/delete';
+
 export const LOAD_USERS = 'LOAD_USERS';
 export const ADD_USER = 'ADD_USER';
 export const FETCH_USER = 'FETCh_USER';
 export const REMOVE_USER = 'REMOVE_USER';
 
 const internalState = {
-  loading: false
+  loading: false,
+  deleted: []
 };
 
-export default (state = internalState, { type, payload: { data } = {} }) => {
+export default (state = internalState, { type, payload: { data, request } = {}, meta }) => {
   switch (type) {
     case LOAD_USERS: {
       return { ...state, loading: true };
@@ -34,7 +41,7 @@ export default (state = internalState, { type, payload: { data } = {} }) => {
 
     case reject(FETCH_USER): {
       // TODO: Should alert and redirect back to list
-      return { ...state }
+      return { ...state };
     }
 
     case resolve(ADD_USER): {
@@ -45,6 +52,18 @@ export default (state = internalState, { type, payload: { data } = {} }) => {
     case reject(ADD_USER): {
       // TODO: should alert failure
       return { ...state };
+    }
+
+    case REMOVE_USER: {
+      return deleteStarted(state, request);
+    }
+
+    case resolve(REMOVE_USER): {
+      return deleteResolved(state, meta);
+    }
+
+    case reject(REMOVE_USER): {
+      return deleteRejected(state, meta);
     }
 
     default: {
@@ -65,6 +84,15 @@ export const fetch = createAction(FETCH_USER, id => ({
   request: {
     url: `/user/${id}`,
     method: 'GET'
+  }
+})
+);
+
+export const remove = createAction(REMOVE_USER, id => ({
+  request: {
+    url: `/user/${id}`,
+    method: 'DELETE',
+    id
   }
 })
 );
