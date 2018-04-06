@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
 
 import TripPart from './TripPart';
-import { loadTripParts, deleteTripPart } from '../redux';
+import { loadTripParts, deleteTripPart } from './redux';
 
-import alerter from '../../../common/alerter';
+import alerter from '../../common/alerter';
 
 export default compose(
   connect(

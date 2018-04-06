@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 
 import List, { ListItem, ListItemText } from 'material-ui/List';
-import LeftListItemSecondaryAction from '../../../common/LeftListItemSecondaryAction';
+import LeftListItemSecondaryAction from '../../common/LeftListItemSecondaryAction';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
 import IconButton from 'material-ui/IconButton';
 
-import redirect from '../../../common/navigation';
-import NewButton from '../../../common/new-button';
+import redirect from '../../common/navigation';
+import NewButton from '../../common/new-button';
 
-import DeleteAction from '../../../common/DeleteAction';
+import DeleteAction from '../../common/DeleteAction';
 
 import PrimaryText from './PrimaryText';
 
