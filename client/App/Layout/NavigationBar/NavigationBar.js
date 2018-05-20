@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper';
 
 import HomeIcon from 'material-ui-icons/Home';
 import PersonIcon from 'material-ui-icons/Person';
-import ExtensionIcon from 'material-ui-icons/extension';
+import ExtensionIcon from 'material-ui-icons/Extension';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
